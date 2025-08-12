@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Strict black & white color scheme */
+    --bg: 0 0% 100%;
+    --text: 0 0% 0%;
+    --muted: 0 0% 40%;
+    --border: 0 0% 90%;
+    --black: 0 0% 0%;
+    --accent: 0 0% 0%; /* pure black accent */
+    --accent-2: 0 0% 20%; /* dark gray for secondary */
+    --success: 0 0% 0%;
+
+    /* Tailwind compatibility mappings */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --primary: var(--accent);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 9% 94.9%;
+    --secondary-foreground: var(--text);
+    --muted-bg: 220 9% 94.9%;
+    --muted-foreground: var(--muted);
+    --accent-bg: var(--accent);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --card: var(--bg);
+    --card-foreground: var(--text);
+    --popover: var(--bg);
+    --popover-foreground: var(--text);
+    --input: var(--border);
+    --ring: var(--accent);
+
+    /* Typography */
+    --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --font-serif: "Playfair Display", "Georgia", serif;
+
+    /* Sizes */
+    --fs-h1: 2.75rem;   /* 44px */
+    --fs-h2: 1.75rem;   /* 28px */
+    --fs-h3: 1.125rem;  /* 18px */
+    --fs-body: 1rem;    /* 16px */
+    --fs-caption: 0.875rem; /* 14px */
+
+    /* Spacing scale */
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+
+    /* Layout / grid */
+    --container-width: 1200px;
+    --gutter: 20px;
+
+    /* Border radius */
+    --radius: 0.5rem;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+
+    /* Transitions */
+    --fast: 160ms;
+    --med: 320ms;
+    --ease: cubic-bezier(0.2, 0.9, 0.3, 1);
+
+    /* Shadow */
+    --shadow: 0 8px 24px rgba(17, 17, 17, 0.08);
+  }
+
+  .dark {
+    --bg: 0 0% 3.9%;
+    --text: 0 0% 98%;
+    --muted: 0 0% 63.9%;
+    --border: 0 0% 14.9%;
+    --accent: 322 55% 45.5%;
+    --accent-2: 42 36% 58.8%;
+
+    --background: var(--bg);
+    --foreground: var(--text);
+    --primary: var(--accent);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: var(--text);
+    --muted-bg: 0 0% 14.9%;
+    --muted-foreground: var(--muted);
+    --accent-bg: var(--accent);
+    --accent-foreground: 0 0% 100%;
+    --card: var(--bg);
+    --card-foreground: var(--text);
+    --popover: var(--bg);
+    --popover-foreground: var(--text);
+    --input: var(--border);
+    --ring: var(--accent);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+@layer components {
+  .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* 12-column grid system */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gutter);
+  }
+
+  /* Product grid responsive layouts */
+  .products-grid {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  /* Mobile: 1 card per row */
+  @media (max-width: 767px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+    .container {
+      padding: 0 16px;
+    }
+  }
+
+  /* Tablet: 2-3 cards per row */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Desktop: 4-6 cards per row */
+  @media (min-width: 1200px) {
+    .products-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .products-grid.wide {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg font-bold cursor-pointer transition-all;
+    padding: 0 28px;
+    height: 56px;
+    font-size: 1rem;
+    border-radius: 10px;
+    transition: transform var(--fast) var(--ease);
+  }
+
+  .btn-primary {
+    background: hsl(var(--black));
+    color: white;
+    border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-4px) scale(1.01);
+    background: hsl(var(--accent-2));
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid hsl(var(--text));
+    color: hsl(var(--text));
+  }
+
+  .btn-outline:hover {
+    background: hsl(var(--text));
+    color: hsl(var(--bg));
+  }
+
+  .product-card {
+    @apply flex gap-5 p-5 border rounded-xl bg-card;
+    box-shadow: var(--shadow);
+    transition: transform var(--fast) var(--ease);
+  }
+
+  .product-card:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .product-card {
+      @apply flex-col;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes confetti {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+.btn-primary:hover {
+  animation: pulse 800ms ease-in-out 1;
+}
+
+/* Enhanced hover effects */
+.product-card-hover {
+  transition: transform var(--fast) var(--ease);
+}
+
+.product-card-hover:hover {
+  transform: translateY(-3px);
+}
+
+.product-card-hover:hover .product-image {
+  transform: scale(1.04);
+}
+
+.product-card-hover:hover .product-overlay {
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.12));
+}
+
+.product-cta-slide {
+  transform: translateY(12px);
+  opacity: 0;
+  transition: all var(--med) var(--ease);
+}
+
+.product-card-hover:hover .product-cta-slide {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Hero parallax */
+.hero-parallax {
+  will-change: transform;
+  transition: transform var(--fast) linear;
+}
+
+/* Success modal */
+.success-modal {
+  animation: fadeIn 240ms var(--ease);
+}
+
+.success-confetti {
+  animation: confetti 1200ms var(--ease) infinite;
+}
+
+/* Carousel transitions */
+.carousel-slide {
+  transform: translateX(0);
+  transition: transform var(--med) var(--ease), opacity var(--med) var(--ease);
+}
+
+.carousel-slide.next {
+  transform: translateX(100%);
+}
+
+.carousel-slide.prev {
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-parallax {
+    transform: none !important;
+  }
+}
