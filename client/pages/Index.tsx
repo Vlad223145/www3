@@ -287,12 +287,32 @@ export default function Index() {
                                    item.id === 2 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc50c8ec0c8aa44b9a20eb42b27c86139?format=webp)' :
                                    item.id === 3 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp)' :
                                    item.id === 4 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)' :
+                                   item.id === 5 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)' :
                                    'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))',
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
+                    backgroundPosition: item.id === 5 ? '50% 50%' : 'center',
                     backgroundSize: 'cover'
                   }}
                 />
+
+                {/* Additional overlay for AMOUAGE */}
+                {item.id === 5 && (
+                  <div
+                    className="absolute"
+                    style={{
+                      backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)',
+                      backgroundPosition: '50% 50%',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                      bottom: '0px',
+                      left: '-1286px',
+                      right: '0px',
+                      top: '-475px',
+                      marginLeft: '17px',
+                      width: '336px'
+                    }}
+                  />
+                )}
 
                 {/* Content - only show for BY KILIAN (item.id === 4) */}
                 {item.id === 4 && (
