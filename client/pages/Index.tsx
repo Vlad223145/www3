@@ -328,80 +328,20 @@ export default function Index() {
 
 
 
-      {/* Trust Points */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Why Choose Us</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {trustPoints.map((point, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-black">
-                  {point.icon}
-                </div>
-                <h3 className="font-bold mb-2">{point.title}</h3>
-                <p className="text-muted text-sm">{point.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sample Process Details */}
-      <section className="py-20 bg-white">
-        <div className="container">
-          <h2 className="font-serif text-4xl font-bold text-center mb-16 text-black">The Complete Sample Experience</h2>
-
-          <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold">1</span>
-              </div>
-              <h3 className="font-bold text-xl mb-4 text-black">Select Your Samples</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Browse our premium collection and choose up to 3 samples from world-renowned niche fragrance houses.
-                Each 2ml sample provides 30-40 applications - enough to truly experience the fragrance.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold">2</span>
-              </div>
-              <h3 className="font-bold text-xl mb-4 text-black">Secure Checkout</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Link your payment card for security. No charges apply to samples - you only pay if you decide
-                to purchase full-size bottles. Complete transparency with no hidden fees.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold">3</span>
-              </div>
-              <h3 className="font-bold text-xl mb-4 text-black">Free Delivery Worldwide</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Your samples arrive in premium packaging with detailed fragrance notes and application tips.
-                Free shipping globally with tracking included. Delivery within 3-7 business days.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Premium Collection Showcase - 5 Large Windows */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-16">Premium Collection Showcase</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">Premium Collection Showcase</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
+          {/* Desktop: Very large blocks, Mobile: Responsive stacking */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-2xl bg-black"
+                className="group relative overflow-hidden rounded-xl lg:rounded-2xl bg-black"
                 style={{
-                  height: '500px',
-                  minHeight: '500px'
+                  height: window.innerWidth >= 1024 ? '700px' : window.innerWidth >= 640 ? '400px' : '300px',
+                  minHeight: window.innerWidth >= 1024 ? '700px' : window.innerWidth >= 640 ? '400px' : '300px'
                 }}
               >
                 <img
@@ -414,17 +354,17 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-serif text-white text-xl font-bold mb-2">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
+                  <h3 className="font-serif text-white text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-white/80 text-sm font-light">
+                  <p className="text-white/80 text-sm sm:text-base lg:text-lg font-light">
                     {item.subtitle}
                   </p>
 
                   {/* Hover CTA */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4">
-                    <button className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2 sm:mt-4">
+                    <button className="bg-white text-black px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-medium hover:bg-gray-100 transition-colors">
                       View Collection
                     </button>
                   </div>
@@ -432,14 +372,75 @@ export default function Index() {
 
                 {/* Featured badge */}
                 {item.featured && (
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-white text-black px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
+                    <span className="bg-white text-black px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-bold">
                       FEATURED
                     </span>
                   </div>
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Points */}
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="container">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">Why Choose Us</h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {trustPoints.map((point, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-black">
+                  {point.icon}
+                </div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2">{point.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base">{point.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Process Details */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-black">The Complete Sample Experience</h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">1</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Select Your Samples</h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Browse our premium collection and choose up to 3 samples from world-renowned niche fragrance houses.
+                Each 2ml sample provides 30-40 applications - enough to truly experience the fragrance.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">2</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Secure Checkout</h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Link your payment card for security. No charges apply to samples - you only pay if you decide
+                to purchase full-size bottles. Complete transparency with no hidden fees.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">3</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Free Delivery Worldwide</h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Your samples arrive in premium packaging with detailed fragrance notes and application tips.
+                Free shipping globally with tracking included. Delivery within 3-7 business days.
+              </p>
+            </div>
           </div>
         </div>
       </section>
