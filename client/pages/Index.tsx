@@ -350,17 +350,17 @@ export default function Index() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8">
-                  <h3 className="font-serif text-white text-lg sm:text-xl lg:text-2xl font-bold mb-1 sm:mb-2">
+                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-12 xl:p-16">
+                  <h3 className="font-serif text-white text-xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-4">
                     {item.title}
                   </h3>
-                  <p className="text-white/80 text-sm sm:text-base lg:text-lg font-light">
+                  <p className="text-white/80 text-base lg:text-xl xl:text-2xl font-light">
                     {item.subtitle}
                   </p>
 
                   {/* Hover CTA */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-2 sm:mt-4">
-                    <button className="bg-white text-black px-3 py-1.5 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-medium hover:bg-gray-100 transition-colors">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 lg:mt-8">
+                    <button className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 rounded-lg text-sm lg:text-lg xl:text-xl font-medium hover:bg-gray-100 transition-colors">
                       View Collection
                     </button>
                   </div>
