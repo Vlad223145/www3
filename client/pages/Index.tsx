@@ -208,73 +208,6 @@ export default function Index() {
                   </p>
                 </div>
 
-                {/* Quick Sample Order Form */}
-                <div className="bg-white/95 backdrop-blur border border-white/20 rounded-xl p-8 shadow-2xl">
-                  <h3 className="font-serif text-2xl font-bold mb-6 text-black">Order Free Sample</h3>
-
-                  {isFormSubmitted ? (
-                    <div className="text-center py-8">
-                      <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
-                        <Check className="w-10 h-10 text-white" />
-                      </div>
-                      <h4 className="font-bold text-xl mb-3 text-black">Order Sent!</h4>
-                      <p className="text-gray-600">We will contact you within 24 hours</p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSampleOrder} className="space-y-5">
-                      <div>
-                        <input
-                          type="email"
-                          placeholder="Your email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Delivery address"
-                          value={address}
-                          onChange={(e) => setAddress(e.target.value)}
-                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <select
-                          value={selectedFragrance}
-                          onChange={(e) => setSelectedFragrance(e.target.value)}
-                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
-                        >
-                          <option value="">Choose fragrance (optional)</option>
-                          <option value="oud-venetian">Tom Ford - Oud Venetian</option>
-                          <option value="aventus">Creed - Aventus</option>
-                          <option value="noir-intense">Maison Rare - Noir Intense</option>
-                        </select>
-                      </div>
-
-                      <div className="flex items-start space-x-3">
-                        <input type="checkbox" id="newsletter" className="mt-1.5" />
-                        <label htmlFor="newsletter" className="text-gray-600">
-                          Subscribe to newsletter (10% discount on full size)
-                        </label>
-                      </div>
-
-                      <button type="submit" className="btn btn-primary w-full text-lg py-4">
-                        Order Free Sample
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </button>
-
-                      <p className="text-sm text-gray-500 text-center">
-                        No hidden fees — only payment when buying full-size bottle
-                      </p>
-                    </form>
-                  )}
-                </div>
               </div>
 
               {/* Right Column - Steps Process */}
@@ -463,7 +396,7 @@ export default function Index() {
       {/* Footer */}
       <footer className="bg-black text-white py-16">
         <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
               <h3 className="font-serif text-xl font-bold mb-4">NICHE</h3>
               <p className="text-gray-400 text-sm">
@@ -471,27 +404,7 @@ export default function Index() {
               </p>
             </div>
             
-            <div>
-              <h4 className="font-bold mb-4">Catalog</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link to="/catalog" className="hover:text-white">All Fragrances</Link></li>
-                <li><Link to="/new" className="hover:text-white">New Arrivals</Link></li>
-                <li><Link to="/bestsellers" className="hover:text-white">Bestsellers</Link></li>
-                <li><Link to="/brands" className="hover:text-white">Brands</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Help</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link to="/help" className="hover:text-white">How to Order</Link></li>
-                <li><Link to="/delivery" className="hover:text-white">Delivery</Link></li>
-                <li><Link to="/returns" className="hover:text-white">Returns</Link></li>
-                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-              </ul>
-            </div>
-            
-            <div>
+            <div className="ml-[120px]">
               <h4 className="font-bold mb-4">Newsletter</h4>
               <p className="text-gray-400 text-sm mb-4">
                 Get notifications about new fragrances and special offers
