@@ -105,9 +105,8 @@ export default function ReviewsCarousel() {
   return (
     <section className="py-16 bg-white">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-h2 font-bold mb-4">Customer Reviews</h2>
-          <p className="text-muted">What niche fragrance lovers say about us</p>
+        <div className="text-center mb-12 pb-4 font-serif text-h2 font-normal">
+          Customer Reviews
         </div>
 
         <div className="relative max-w-6xl mx-auto">
@@ -160,11 +159,6 @@ export default function ReviewsCarousel() {
 
                 {/* Author Info */}
                 <div className="flex items-center">
-                  <img
-                    src={review.avatar}
-                    alt={review.name}
-                    className="w-12 h-12 rounded-full object-cover mr-3"
-                  />
                   <div>
                     <div className="flex items-center">
                       <h4 className="font-semibold text-sm">{review.name}</h4>
