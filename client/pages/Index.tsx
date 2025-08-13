@@ -274,30 +274,44 @@ export default function Index() {
                 className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl"
               >
                 <img
-                  src={item.image}
+                  src={item.id === 2 ? 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a' : item.image}
                   alt={`${item.title} ${item.subtitle}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: item.id === 1 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9)' :
+                                   item.id === 2 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc50c8ec0c8aa44b9a20eb42b27c86139?format=webp)' :
+                                   item.id === 3 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp)' :
+                                   item.id === 4 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)' :
+                                   'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                  }}
+                />
 
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-12 xl:p-16">
-                  <h3 className="font-serif text-white text-xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/80 text-base lg:text-xl xl:text-2xl font-light">
-                    {item.subtitle}
-                  </p>
+                {/* Content - only show for BY KILIAN (item.id === 4) */}
+                {item.id === 4 && (
+                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-12 xl:p-16">
+                    <h3 className="font-serif text-white text-xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-4">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/80 text-base lg:text-xl xl:text-2xl font-light">
+                      {item.subtitle}
+                    </p>
 
-                  {/* Hover CTA */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 lg:mt-8">
-                    <button className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 rounded-lg text-sm lg:text-lg xl:text-xl font-medium hover:bg-gray-100 transition-colors">
-                      View Collection
-                    </button>
+                    {/* Hover CTA */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 lg:mt-8">
+                      <button className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 rounded-lg text-sm lg:text-lg xl:text-xl font-medium hover:bg-gray-100 transition-colors">
+                        View Collection
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Featured badge */}
                 {item.featured && (
