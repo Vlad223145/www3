@@ -316,7 +316,7 @@ export default function Index() {
 
                   <div className="mt-8 p-4 bg-black rounded-lg">
                     <p className="text-white text-center font-medium">
-                      100% Free Samples �� No Hidden Costs • Premium Quality
+                      100% Free Samples • No Hidden Costs • Premium Quality
                     </p>
                   </div>
                 </div>
@@ -333,8 +333,8 @@ export default function Index() {
         <div className="container">
           <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">Premium Collection Showcase</h2>
 
-          {/* Desktop: Very large blocks, Mobile: Responsive stacking */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
+          {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
