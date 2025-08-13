@@ -338,7 +338,7 @@ export default function Index() {
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-xl lg:rounded-2xl bg-black h-[300px] sm:h-[400px] lg:h-[700px]"
+                className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl"
               >
                 <img
                   src={item.image}
