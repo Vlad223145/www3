@@ -368,8 +368,8 @@ export default function Index() {
 
                 {/* Featured badge */}
                 {item.featured && (
-                  <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
-                    <span className="bg-white text-black px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs font-bold">
+                  <div className="absolute top-4 right-4 lg:top-8 lg:right-8">
+                    <span className="bg-white text-black px-3 py-1 lg:px-6 lg:py-3 rounded-full text-xs lg:text-sm xl:text-base font-bold">
                       FEATURED
                     </span>
                   </div>
