@@ -155,9 +155,15 @@ export default function Index() {
             loop
             playsInline
             className="w-full h-full object-cover"
+            poster="/api/placeholder/1920/1080"
           >
             <source src="/api/placeholder/video/perfume-background.mp4" type="video/mp4" />
           </video>
+          {/* Fallback background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: 'url(/api/placeholder/1920/1080)' }}
+          ></div>
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
