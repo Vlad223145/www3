@@ -316,7 +316,7 @@ export default function Index() {
 
                   <div className="mt-8 p-4 bg-black rounded-lg">
                     <p className="text-white text-center font-medium">
-                      100% Free Samples • No Hidden Costs • Premium Quality
+                      100% Free Samples �� No Hidden Costs • Premium Quality
                     </p>
                   </div>
                 </div>
@@ -338,11 +338,7 @@ export default function Index() {
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-xl lg:rounded-2xl bg-black"
-                style={{
-                  height: window.innerWidth >= 1024 ? '700px' : window.innerWidth >= 640 ? '400px' : '300px',
-                  minHeight: window.innerWidth >= 1024 ? '700px' : window.innerWidth >= 640 ? '400px' : '300px'
-                }}
+                className="group relative overflow-hidden rounded-xl lg:rounded-2xl bg-black h-[300px] sm:h-[400px] lg:h-[700px]"
               >
                 <img
                   src={item.image}
