@@ -18,98 +18,8 @@ export default function Index() {
     setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
-  const categories = [
-    { name: 'Night', image: '/api/placeholder/400/300', count: 24 },
-    { name: 'Day', image: '/api/placeholder/400/300', count: 31 },
-    { name: 'Unisex', image: '/api/placeholder/400/300', count: 18 },
-    { name: 'Woody', image: '/api/placeholder/400/300', count: 27 },
-    { name: 'Floral', image: '/api/placeholder/400/300', count: 33 },
-    { name: 'Oriental', image: '/api/placeholder/400/300', count: 21 }
-  ];
 
-  const featuredProducts = [
-    {
-      id: 1,
-      brand: 'TOM FORD',
-      name: 'Oud Venetian',
-      price: 18500,
-      originalPrice: 21000,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.8,
-      reviews: 132,
-      notes: ['Oud', 'Amber', 'Vanilla'],
-      description: 'Woody-amber fragrance with notes of oud, tobacco and vanilla — perfect for evening.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 18500, available: true },
-        { id: '100ml', name: '100ml', price: 28500, available: true }
-      ],
-      available: true,
-      slug: 'oud-venetian',
-      isNew: true
-    },
-    {
-      id: 2,
-      brand: 'CREED',
-      name: 'Aventus',
-      price: 16200,
-      originalPrice: 18500,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.9,
-      reviews: 256,
-      notes: ['Bergamot', 'Smoke', 'Musk'],
-      description: 'Legendary fragrance for successful men with notes of bergamot and smoke.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 16200, available: true },
-        { id: '100ml', name: '100ml', price: 24500, available: false }
-      ],
-      available: true,
-      slug: 'aventus',
-      isBestseller: true
-    },
-    {
-      id: 3,
-      brand: 'MAISON RARE',
-      name: 'Noir Intense',
-      price: 12800,
-      originalPrice: 14500,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.7,
-      reviews: 89,
-      notes: ['Rose', 'Wood', 'Tobacco'],
-      description: 'Intense evening fragrance with rich notes of rose and tobacco.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 12800, available: true }
-      ],
-      available: true,
-      slug: 'noir-intense',
-      isRare: true
-    },
-    {
-      id: 4,
-      brand: 'BY KILIAN',
-      name: 'Black Phantom',
-      price: 19500,
-      originalPrice: 22000,
-      images: ['/api/placeholder/300/400'],
-      rating: 4.6,
-      reviews: 76,
-      notes: ['Coffee', 'Vanilla', 'Sandalwood'],
-      description: 'Seductive fragrance with notes of coffee and vanilla.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 19500, available: true }
-      ],
-      available: true,
-      slug: 'black-phantom'
-    }
-  ];
 
-  const brands = [
-    'TOM FORD', 'CREED', 'MAISON RARE', 'BY KILIAN', 'AMOUAGE', 'XERJOFF'
-  ];
 
   const trustPoints = [
     {
@@ -134,7 +44,7 @@ export default function Index() {
     }
   ];
 
-  // Large showcase items for the gallery section
+  // Large showcase items for the gallery section - only 5 items
   const showcaseItems = [
     {
       id: 1,
@@ -169,34 +79,6 @@ export default function Index() {
       image: '/api/placeholder/500/600',
       title: 'AMOUAGE',
       subtitle: 'Jubilation XXV',
-      featured: false
-    },
-    {
-      id: 6,
-      image: '/api/placeholder/500/600',
-      title: 'XERJOFF',
-      subtitle: 'Cruz del Sur II',
-      featured: false
-    },
-    {
-      id: 7,
-      image: '/api/placeholder/500/600',
-      title: 'PARFUMS DE MARLY',
-      subtitle: 'Layton',
-      featured: true
-    },
-    {
-      id: 8,
-      image: '/api/placeholder/500/600',
-      title: 'NASOMATTO',
-      subtitle: 'Black Afgano',
-      featured: false
-    },
-    {
-      id: 9,
-      image: '/api/placeholder/500/600',
-      title: 'FREDERIC MALLE',
-      subtitle: 'Portrait of a Lady',
       featured: false
     }
   ];
@@ -341,55 +223,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Categories/Mood Tiles */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Find Your Scent</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {categories.map((category, index) => (
-              <Link
-                key={index}
-                to={`/category/${category.name.toLowerCase()}`}
-                className="group relative overflow-hidden rounded-lg aspect-[3/2] bg-gray-100"
-              >
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4">
-                  <h3 className="text-white font-semibold">{category.name}</h3>
-                  <p className="text-white/80 text-sm">{category.count} fragrances</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Featured Products */}
-      <section className="py-16">
-        <div className="container">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-h2 font-bold">New Arrivals</h2>
-            <Link to="/new" className="text-black hover:underline flex items-center">
-              View All <ChevronRight className="w-4 h-4 ml-1" />
-            </Link>
-          </div>
-          
-          <div className="products-grid">
-            {featuredProducts.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                variant="compact"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Trust Points */}
       <section className="py-16 bg-white">
@@ -443,21 +277,19 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Large Showcase Gallery - 9 Big Windows */}
+      {/* Premium Collection Showcase - 5 Large Windows */}
       <section className="py-24 bg-white">
         <div className="container">
           <h2 className="font-serif text-h2 font-bold text-center mb-16">Premium Collection Showcase</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
             {showcaseItems.map((item, index) => (
-              <div 
-                key={item.id} 
-                className={`group relative overflow-hidden rounded-2xl bg-black ${
-                  item.featured ? 'md:row-span-2' : ''
-                }`}
-                style={{ 
-                  height: item.featured ? '600px' : '400px',
-                  minHeight: '400px'
+              <div
+                key={item.id}
+                className="group relative overflow-hidden rounded-2xl bg-black"
+                style={{
+                  height: '500px',
+                  minHeight: '500px'
                 }}
               >
                 <img
@@ -465,22 +297,22 @@ export default function Index() {
                   alt={`${item.title} ${item.subtitle}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                
+
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="font-serif text-white text-2xl font-bold mb-2">
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-serif text-white text-xl font-bold mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-white/80 text-lg font-light">
+                  <p className="text-white/80 text-sm font-light">
                     {item.subtitle}
                   </p>
-                  
+
                   {/* Hover CTA */}
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4">
-                    <button className="bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    <button className="bg-white text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors">
                       View Collection
                     </button>
                   </div>
@@ -500,20 +332,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Brands */}
-      <section className="py-16">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Premium Brands</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {brands.map((brand, index) => (
-              <div key={index} className="text-center p-4 border border-border rounded-lg hover:shadow-lg transition-shadow">
-                <h3 className="font-bold text-sm">{brand}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Reviews Carousel */}
       <ReviewsCarousel />
