@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ShoppingBag, Search, Menu, ChevronRight, Check, Truck, Shield, Clock, ArrowRight } from 'lucide-react';
+import { Star, ShoppingBag, Search, Menu, ChevronRight, Check, Truck, Shield, Clock, ArrowRight, CreditCard, Gift, Package } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import ReviewsCarousel from '../components/ReviewsCarousel';
 
@@ -9,6 +9,32 @@ export default function Index() {
   const [address, setAddress] = useState('');
   const [selectedFragrance, setSelectedFragrance] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 7,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Countdown timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        } else if (prev.days > 0) {
+          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+        }
+        return prev;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSampleOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,104 +145,175 @@ export default function Index() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            {/* Left Column - Content & Form (55%) */}
-            <div className="w-full md:w-[55%] space-y-8 order-2 md:order-1">
-              <div className="space-y-4">
-                <h1 className="font-serif font-bold text-black" style={{ 
-                  fontSize: 'var(--fs-h1)', 
-                  lineHeight: '1.02' 
-                }}>
-                  Niche Fragrances — Free Samples
-                </h1>
-                <p className="font-sans text-muted" style={{ 
-                  fontSize: 'var(--fs-h3)' 
-                }}>
-                  Discover rare scents. Free samples. Free shipping.
-                </p>
-              </div>
+      {/* Hero Section with Background Video */}
+      <section className="relative min-h-screen flex items-center">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/api/placeholder/video/perfume-background.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
 
-              {/* Quick Sample Order Form */}
-              <div className="bg-white border border-border rounded-xl p-6 shadow-custom">
-                <h3 className="font-serif text-xl font-bold mb-4">Order Free Sample</h3>
-                
-                {isFormSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Check className="w-8 h-8 text-white" />
-                    </div>
-                    <h4 className="font-bold text-lg mb-2">Order Sent!</h4>
-                    <p className="text-muted">We will contact you within 24 hours</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSampleOrder} className="space-y-4">
-                    <div>
-                      <input
-                        type="email"
-                        placeholder="Your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Delivery address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <select
-                        value={selectedFragrance}
-                        onChange={(e) => setSelectedFragrance(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                      >
-                        <option value="">Choose fragrance (optional)</option>
-                        <option value="oud-venetian">Tom Ford - Oud Venetian</option>
-                        <option value="aventus">Creed - Aventus</option>
-                        <option value="noir-intense">Maison Rare - Noir Intense</option>
-                      </select>
-                    </div>
-                    
-                    <div className="flex items-start space-x-2">
-                      <input type="checkbox" id="newsletter" className="mt-1" />
-                      <label htmlFor="newsletter" className="text-sm text-muted">
-                        Subscribe to newsletter (10% discount on full size)
-                      </label>
-                    </div>
-                    
-                    <button type="submit" className="btn btn-primary w-full">
-                      Order Free Sample
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </button>
-                    
-                    <p className="text-xs text-muted text-center">
-                      No hidden fees — only payment when buying full-size bottle
-                    </p>
-                  </form>
-                )}
+        <div className="container relative z-10 py-20">
+          <div className="max-w-6xl mx-auto">
+            {/* Countdown Timer */}
+            <div className="text-center mb-12">
+              <p className="text-white/80 text-lg mb-4">Limited Time Offer Ends In:</p>
+              <div className="flex justify-center gap-4 mb-8">
+                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                  <div className="text-3xl font-bold text-white">{timeLeft.days.toString().padStart(2, '0')}</div>
+                  <div className="text-white/70 text-sm">DAYS</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                  <div className="text-3xl font-bold text-white">{timeLeft.hours.toString().padStart(2, '0')}</div>
+                  <div className="text-white/70 text-sm">HOURS</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                  <div className="text-3xl font-bold text-white">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+                  <div className="text-white/70 text-sm">MINUTES</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                  <div className="text-3xl font-bold text-white">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+                  <div className="text-white/70 text-sm">SECONDS</div>
+                </div>
               </div>
             </div>
 
-            {/* Right Column - Hero Image (45%) */}
-            <div className="w-full md:w-[45%] relative order-1 md:order-2">
-              <div className="aspect-[3/4] max-h-[560px] relative mx-auto">
-                <img
-                  src="/api/placeholder/600/800"
-                  alt="Premium niche fragrance bottle shot"
-                  className="w-full h-full object-contain rounded-xl drop-shadow-xl"
-                  style={{ boxShadow: 'var(--shadow)' }}
-                />
+            <div className="flex flex-col lg:flex-row gap-12 items-center">
+              {/* Left Column - Content & Form */}
+              <div className="w-full lg:w-1/2 space-y-8">
+                <div className="space-y-6">
+                  <h1 className="font-serif font-bold text-white text-5xl lg:text-6xl leading-tight">
+                    Niche Fragrances — Free Samples
+                  </h1>
+                  <p className="font-sans text-white/90 text-xl lg:text-2xl">
+                    Discover rare scents. Free samples. Free shipping.
+                  </p>
+                  <p className="text-white/80 text-lg">
+                    Try 2ml fragrance samples with free worldwide delivery.
+                    Simply choose your gift set, link your card, and receive premium samples at no cost.
+                  </p>
+                </div>
+
+                {/* Quick Sample Order Form */}
+                <div className="bg-white/95 backdrop-blur border border-white/20 rounded-xl p-8 shadow-2xl">
+                  <h3 className="font-serif text-2xl font-bold mb-6 text-black">Order Free Sample</h3>
+
+                  {isFormSubmitted ? (
+                    <div className="text-center py-8">
+                      <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Check className="w-10 h-10 text-white" />
+                      </div>
+                      <h4 className="font-bold text-xl mb-3 text-black">Order Sent!</h4>
+                      <p className="text-gray-600">We will contact you within 24 hours</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSampleOrder} className="space-y-5">
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="Your email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Delivery address"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <select
+                          value={selectedFragrance}
+                          onChange={(e) => setSelectedFragrance(e.target.value)}
+                          className="w-full px-5 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent text-lg"
+                        >
+                          <option value="">Choose fragrance (optional)</option>
+                          <option value="oud-venetian">Tom Ford - Oud Venetian</option>
+                          <option value="aventus">Creed - Aventus</option>
+                          <option value="noir-intense">Maison Rare - Noir Intense</option>
+                        </select>
+                      </div>
+
+                      <div className="flex items-start space-x-3">
+                        <input type="checkbox" id="newsletter" className="mt-1.5" />
+                        <label htmlFor="newsletter" className="text-gray-600">
+                          Subscribe to newsletter (10% discount on full size)
+                        </label>
+                      </div>
+
+                      <button type="submit" className="btn btn-primary w-full text-lg py-4">
+                        Order Free Sample
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </button>
+
+                      <p className="text-sm text-gray-500 text-center">
+                        No hidden fees — only payment when buying full-size bottle
+                      </p>
+                    </form>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Column - Steps Process */}
+              <div className="w-full lg:w-1/2">
+                <div className="bg-white/95 backdrop-blur rounded-xl p-8 shadow-2xl">
+                  <h3 className="font-serif text-2xl font-bold mb-8 text-black text-center">How To Get Free Samples</h3>
+
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <Gift className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">Choose Gift Set</h4>
+                        <p className="text-gray-600">Select from our curated collection of 2ml premium fragrance samples. Each sample provides 30-40 applications.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <CreditCard className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">Link Your Card</h4>
+                        <p className="text-gray-600">Secure your order with card details. No charge for samples - only pay if you decide to purchase full-size bottles.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <Package className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">Receive Samples</h4>
+                        <p className="text-gray-600">Free worldwide shipping. Your sample kit arrives within 3-7 days in elegant packaging with detailed fragrance notes.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 p-4 bg-black rounded-lg">
+                    <p className="text-white text-center font-medium">
+                      100% Free Samples • No Hidden Costs • Premium Quality
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -244,34 +341,43 @@ export default function Index() {
         </div>
       </section>
 
-      {/* How it Works */}
-      <section className="py-16">
+      {/* Sample Process Details */}
+      <section className="py-20 bg-white">
         <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">How It Works</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <h2 className="font-serif text-4xl font-bold text-center mb-16 text-black">The Complete Sample Experience</h2>
+
+          <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
             <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                1
+              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">1</span>
               </div>
-              <h3 className="font-bold mb-2">Choose Sample</h3>
-              <p className="text-muted text-sm">Find your desired fragrance in our catalog</p>
+              <h3 className="font-bold text-xl mb-4 text-black">Select Your Samples</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Browse our premium collection and choose up to 3 samples from world-renowned niche fragrance houses.
+                Each 2ml sample provides 30-40 applications - enough to truly experience the fragrance.
+              </p>
             </div>
-            
+
             <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                2
+              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">2</span>
               </div>
-              <h3 className="font-bold mb-2">Get It Free</h3>
-              <p className="text-muted text-sm">Sample delivery is absolutely free</p>
+              <h3 className="font-bold text-xl mb-4 text-black">Secure Checkout</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Link your payment card for security. No charges apply to samples - you only pay if you decide
+                to purchase full-size bottles. Complete transparency with no hidden fees.
+              </p>
             </div>
-            
+
             <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                3
+              <div className="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold">3</span>
               </div>
-              <h3 className="font-bold mb-2">Buy Full Size</h3>
-              <p className="text-muted text-sm">Order full bottle with discount if you like it</p>
+              <h3 className="font-bold text-xl mb-4 text-black">Free Delivery Worldwide</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Your samples arrive in premium packaging with detailed fragrance notes and application tips.
+                Free shipping globally with tracking included. Delivery within 3-7 business days.
+              </p>
             </div>
           </div>
         </div>
