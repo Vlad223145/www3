@@ -364,7 +364,7 @@ export default function Index() {
               <div
                 key={item.id}
                 className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl cursor-pointer"
-                onClick={() => window.location.href = `/product/${item.id}`}
+                onClick={() => handleProductClick(item.id)}
               >
                 <img
                   src={
@@ -424,16 +424,7 @@ export default function Index() {
                 {/* Add to Cart Button - always visible at bottom */}
                 <div className="absolute bottom-4 left-4 right-4 z-10">
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      addToCart({
-                        id: item.id.toString(),
-                        title: item.title,
-                        subtitle: item.subtitle,
-                        image: item.image,
-                        price: 250
-                      });
-                    }}
+                    onClick={(e) => handleAddToCart(e, item)}
                     className="w-full bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 border border-white/20"
                   >
                     <ShoppingBag className="w-4 h-4" />
