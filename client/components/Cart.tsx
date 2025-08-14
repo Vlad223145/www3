@@ -1,13 +1,23 @@
-import React from 'react';
-import { X, Minus, Plus, Trash2 } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import React from "react";
+import { X, Minus, Plus, Trash2 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 const Cart: React.FC = () => {
-  const { items, removeFromCart, updateQuantity, clearCart, isOpen, toggleCart } = useCart();
+  const {
+    items,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    isOpen,
+    toggleCart,
+  } = useCart();
 
   if (!isOpen) return null;
 
-  const total = items.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + (item.price || 0) * item.quantity,
+    0,
+  );
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex justify-end">
@@ -32,7 +42,10 @@ const Cart: React.FC = () => {
           ) : (
             <div className="space-y-4">
               {items.map((item) => (
-                <div key={item.id} className="flex items-center space-x-4 border-b pb-4">
+                <div
+                  key={item.id}
+                  className="flex items-center space-x-4 border-b pb-4"
+                >
                   <img
                     src={item.image}
                     alt={item.title}
@@ -75,7 +88,9 @@ const Cart: React.FC = () => {
         {items.length > 0 && (
           <div className="border-t p-6">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-lg font-bold">Total: ${total.toFixed(2)}</span>
+              <span className="text-lg font-bold">
+                Total: ${total.toFixed(2)}
+              </span>
               <button
                 onClick={clearCart}
                 className="text-red-500 hover:text-red-700"

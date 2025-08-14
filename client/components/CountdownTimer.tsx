@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect, memo } from "react";
 
 interface TimeLeft {
   days: number;
@@ -42,9 +42,7 @@ const CountdownTimer: React.FC = memo(() => {
 
   return (
     <div className="text-center pt-6">
-      <p className="text-white/80 text-lg mb-4">
-        Limited Time Offer Ends In:
-      </p>
+      <p className="text-white/80 text-lg mb-4">Limited Time Offer Ends In:</p>
       <div className="flex justify-center gap-4">
         <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
           <div className="text-3xl font-bold text-white">
@@ -75,6 +73,6 @@ const CountdownTimer: React.FC = memo(() => {
   );
 });
 
-CountdownTimer.displayName = 'CountdownTimer';
+CountdownTimer.displayName = "CountdownTimer";
 
 export default CountdownTimer;

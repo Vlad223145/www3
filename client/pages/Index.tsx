@@ -29,21 +29,27 @@ export default function Index() {
   const navigate = useNavigate();
 
   // Debounced navigation to prevent multiple clicks
-  const handleProductClick = useCallback((productId: number) => {
-    navigate(`/product/${productId}`);
-  }, [navigate]);
+  const handleProductClick = useCallback(
+    (productId: number) => {
+      navigate(`/product/${productId}`);
+    },
+    [navigate],
+  );
 
   // Optimized add to cart handler
-  const handleAddToCart = useCallback((e: React.MouseEvent, item: any) => {
-    e.stopPropagation();
-    addToCart({
-      id: item.id.toString(),
-      title: item.title,
-      subtitle: item.subtitle,
-      image: item.image,
-      price: 250
-    });
-  }, [addToCart]);
+  const handleAddToCart = useCallback(
+    (e: React.MouseEvent, item: any) => {
+      e.stopPropagation();
+      addToCart({
+        id: item.id.toString(),
+        title: item.title,
+        subtitle: item.subtitle,
+        image: item.image,
+        price: 250,
+      });
+    },
+    [addToCart],
+  );
 
   const handleSampleOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,74 +59,86 @@ export default function Index() {
     setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
-  const trustPoints = useMemo(() => [
-    {
-      icon: <Check className="w-6 h-6" />,
-      title: "Free Samples",
-      description: "Try any fragrance for free",
-    },
-    {
-      icon: <Truck className="w-6 h-6" />,
-      title: "Fast Delivery",
-      description: "1-3 days worldwide",
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: "Original Fragrances",
-      description: "100% authentic products",
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "14 Day Returns",
-      description: "Full money back guarantee",
-    },
-  ], []);
+  const trustPoints = useMemo(
+    () => [
+      {
+        icon: <Check className="w-6 h-6" />,
+        title: "Free Samples",
+        description: "Try any fragrance for free",
+      },
+      {
+        icon: <Truck className="w-6 h-6" />,
+        title: "Fast Delivery",
+        description: "1-3 days worldwide",
+      },
+      {
+        icon: <Shield className="w-6 h-6" />,
+        title: "Original Fragrances",
+        description: "100% authentic products",
+      },
+      {
+        icon: <Clock className="w-6 h-6" />,
+        title: "14 Day Returns",
+        description: "Full money back guarantee",
+      },
+    ],
+    [],
+  );
 
   // Large showcase items for the gallery section - only 6 items - memoized
-  const showcaseItems = useMemo(() => [
-    {
-      id: 1,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
-      title: "TOM FORD",
-      subtitle: "Private Blend Collection",
-      featured: true,
-    },
-    {
-      id: 2,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a",
-      title: "CREED",
-      subtitle: "Royal Exclusives",
-      featured: false,
-    },
-    {
-      id: 3,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp",
-      title: "MAISON RARE",
-      subtitle: "Artisan Series",
-      featured: false,
-    },
-    {
-      id: 4,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab",
-      title: "BY KILIAN",
-      subtitle: "Sacred Wood",
-      featured: true,
-    },
-    {
-      id: 5,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129",
-      title: "AMOUAGE",
-      subtitle: "Jubilation XXV",
-      featured: false,
-    },
-    {
-      id: 6,
-      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp",
-      title: "AMOUAGE",
-      subtitle: "Jubilation XXV",
-      featured: false,
-    },
-  ], []);
+  const showcaseItems = useMemo(
+    () => [
+      {
+        id: 1,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
+        title: "TOM FORD",
+        subtitle: "Private Blend Collection",
+        featured: true,
+      },
+      {
+        id: 2,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a",
+        title: "CREED",
+        subtitle: "Royal Exclusives",
+        featured: false,
+      },
+      {
+        id: 3,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp",
+        title: "MAISON RARE",
+        subtitle: "Artisan Series",
+        featured: false,
+      },
+      {
+        id: 4,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab",
+        title: "BY KILIAN",
+        subtitle: "Sacred Wood",
+        featured: true,
+      },
+      {
+        id: 5,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129",
+        title: "AMOUAGE",
+        subtitle: "Jubilation XXV",
+        featured: false,
+      },
+      {
+        id: 6,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp",
+        title: "AMOUAGE",
+        subtitle: "Jubilation XXV",
+        featured: false,
+      },
+    ],
+    [],
+  );
 
   return (
     <div className="min-h-screen bg-bg pt-20">
@@ -141,7 +159,6 @@ export default function Index() {
             <Link to="/" className="font-serif text-2xl font-bold text-black">
               NICHE
             </Link>
-
 
             <div className="flex items-center space-x-4">
               <Search className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
@@ -177,13 +194,13 @@ export default function Index() {
             className="w-full h-full object-cover"
             poster="/api/placeholder/1920/1080"
             style={{
-              willChange: 'auto',
-              transform: 'translateZ(0)',
-              position: 'absolute',
+              willChange: "auto",
+              transform: "translateZ(0)",
+              position: "absolute",
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%'
+              width: "100%",
+              height: "100%",
             }}
           >
             <source
