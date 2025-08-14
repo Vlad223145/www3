@@ -25,12 +25,6 @@ export default function Index() {
   const [address, setAddress] = useState("");
   const [selectedFragrance, setSelectedFragrance] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 7,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
   const { addToCart, getTotalItems, toggleCart } = useCart();
   const navigate = useNavigate();
 
