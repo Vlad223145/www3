@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import ReviewsCarousel from "../components/ReviewsCarousel";
+import CountdownTimer from "../components/CountdownTimer";
 import { useCart } from "../context/CartContext";
 
 export default function Index() {
