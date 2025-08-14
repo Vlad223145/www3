@@ -346,7 +346,7 @@ export default function Index() {
           </h2>
 
           {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 lg:gap-12 max-w-8xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
@@ -378,7 +378,7 @@ export default function Index() {
                               : item.id === 5
                                 ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
                                 : item.id === 6
-                                  ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
+                                  ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp)"
                                   : "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: item.id === 5 ? "50% 50%" : "center",
