@@ -209,38 +209,8 @@ export default function Index() {
                     premium samples at no cost.
                   </p>
 
-                  {/* Countdown Timer - moved below text */}
-                  <div className="text-center pt-6">
-                    <p className="text-white/80 text-lg mb-4">
-                      Limited Time Offer Ends In:
-                    </p>
-                    <div className="flex justify-center gap-4">
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                        <div className="text-3xl font-bold text-white">
-                          {countdownDisplay.days}
-                        </div>
-                        <div className="text-white/70 text-sm">DAYS</div>
-                      </div>
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                        <div className="text-3xl font-bold text-white">
-                          {countdownDisplay.hours}
-                        </div>
-                        <div className="text-white/70 text-sm">HOURS</div>
-                      </div>
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                        <div className="text-3xl font-bold text-white">
-                          {countdownDisplay.minutes}
-                        </div>
-                        <div className="text-white/70 text-sm">MINUTES</div>
-                      </div>
-                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                        <div className="text-3xl font-bold text-white">
-                          {countdownDisplay.seconds}
-                        </div>
-                        <div className="text-white/70 text-sm">SECONDS</div>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Countdown Timer - isolated component */}
+                  <CountdownTimer />
                 </div>
               </div>
 
