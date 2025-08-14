@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import ReviewsCarousel from "../components/ReviewsCarousel";
+import { useCart } from "../context/CartContext";
 
 export default function Index() {
   const [email, setEmail] = useState("");
