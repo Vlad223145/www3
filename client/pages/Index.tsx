@@ -346,7 +346,7 @@ export default function Index() {
           </h2>
 
           {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 lg:gap-12 max-w-8xl mx-auto">
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
