@@ -131,7 +131,12 @@
 
   /* Improve scroll performance */
   .scroll-smooth {
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable all smooth scrolling */
+  * {
+    scroll-behavior: auto !important;
   }
 
   /* Prevent video from causing layout issues */
