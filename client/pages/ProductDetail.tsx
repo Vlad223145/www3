@@ -40,7 +40,7 @@ const getProductById = (id: string) => {
       id: '4',
       title: 'BY KILIAN',
       subtitle: 'Sacred Wood',
-      image: '/api/placeholder/500/600',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab',
       price: 220,
       description: 'A spiritual journey through sacred woods and exotic spices. This fragrance represents the mystical side of perfumery, where each note tells a story of ancient rituals and sacred ceremonies.',
       notes: ['Sandalwood', 'Spices', 'Milk', 'Rose'],
