@@ -135,7 +135,7 @@ export default function Index() {
       </div>
 
       {/* Navigation */}
-      <nav className="bg-white border-b border-border sticky top-0 z-50">
+      <nav className="bg-white border-b border-border fixed top-0 w-full z-50">
         <div className="container py-4">
           <div className="flex items-center justify-center">
             <Link to="/" className="font-serif text-2xl font-bold text-black">
