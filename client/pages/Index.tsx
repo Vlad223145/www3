@@ -377,7 +377,9 @@ export default function Index() {
                               ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)"
                               : item.id === 5
                                 ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
-                                : "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))",
+                                : item.id === 6
+                                  ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
+                                  : "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: item.id === 5 ? "50% 50%" : "center",
                     backgroundSize: "cover",
