@@ -60,7 +60,7 @@ const getProductById = (id: string) => {
       id: '6',
       title: 'AMOUAGE',
       subtitle: 'Jubilation XXV',
-      image: '/api/placeholder/500/600',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp',
       price: 280,
       description: 'A celebration of 25 years of Amouage excellence. This anniversary fragrance represents the epitome of luxury and craftsmanship, featuring the finest ingredients in perfect harmony.',
       notes: ['Frankincense', 'Myrrh', 'Rose', 'Oud'],
