@@ -367,11 +367,7 @@ export default function Index() {
                 onClick={() => handleProductClick(item.id)}
               >
                 <img
-                  src={
-                    item.id === 2
-                      ? "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a"
-                      : item.image
-                  }
+                  src={item.image}
                   alt={`${item.title} ${item.subtitle}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                   loading="lazy"
