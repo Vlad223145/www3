@@ -124,6 +124,13 @@ export default function Index() {
       subtitle: "Jubilation XXV",
       featured: false,
     },
+    {
+      id: 6,
+      image: "/api/placeholder/500/600",
+      title: "AMOUAGE",
+      subtitle: "Jubilation XXV",
+      featured: false,
+    },
   ];
 
   return (
