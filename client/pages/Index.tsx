@@ -1,25 +1,39 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Star, ShoppingBag, Search, Menu, ChevronRight, Check, Truck, Shield, Clock, ArrowRight, CreditCard, Gift, Package } from 'lucide-react';
-import ProductCard from '../components/ProductCard';
-import ReviewsCarousel from '../components/ReviewsCarousel';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  Star,
+  ShoppingBag,
+  Search,
+  Menu,
+  ChevronRight,
+  Check,
+  Truck,
+  Shield,
+  Clock,
+  ArrowRight,
+  CreditCard,
+  Gift,
+  Package,
+} from "lucide-react";
+import ProductCard from "../components/ProductCard";
+import ReviewsCarousel from "../components/ReviewsCarousel";
 
 export default function Index() {
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [selectedFragrance, setSelectedFragrance] = useState('');
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [selectedFragrance, setSelectedFragrance] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 7,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
 
   // Countdown timer effect
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prev => {
+      setTimeLeft((prev) => {
         if (prev.seconds > 0) {
           return { ...prev, seconds: prev.seconds - 1 };
         } else if (prev.minutes > 0) {
@@ -27,7 +41,13 @@ export default function Index() {
         } else if (prev.hours > 0) {
           return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
         } else if (prev.days > 0) {
-          return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+          return {
+            ...prev,
+            days: prev.days - 1,
+            hours: 23,
+            minutes: 59,
+            seconds: 59,
+          };
         }
         return prev;
       });
@@ -39,74 +59,71 @@ export default function Index() {
   const handleSampleOrder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !address) return;
-    
+
     setIsFormSubmitted(true);
     setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
-
-
-
   const trustPoints = [
     {
       icon: <Check className="w-6 h-6" />,
-      title: 'Free Samples',
-      description: 'Try any fragrance for free'
+      title: "Free Samples",
+      description: "Try any fragrance for free",
     },
     {
       icon: <Truck className="w-6 h-6" />,
-      title: 'Fast Delivery',
-      description: '1-3 days worldwide'
+      title: "Fast Delivery",
+      description: "1-3 days worldwide",
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: 'Original Fragrances',
-      description: '100% authentic products'
+      title: "Original Fragrances",
+      description: "100% authentic products",
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: '14 Day Returns',
-      description: 'Full money back guarantee'
-    }
+      title: "14 Day Returns",
+      description: "Full money back guarantee",
+    },
   ];
 
   // Large showcase items for the gallery section - only 5 items
   const showcaseItems = [
     {
       id: 1,
-      image: '/api/placeholder/500/600',
-      title: 'TOM FORD',
-      subtitle: 'Private Blend Collection',
-      featured: true
+      image: "/api/placeholder/500/600",
+      title: "TOM FORD",
+      subtitle: "Private Blend Collection",
+      featured: true,
     },
     {
       id: 2,
-      image: '/api/placeholder/500/600',
-      title: 'CREED',
-      subtitle: 'Royal Exclusives',
-      featured: false
+      image: "/api/placeholder/500/600",
+      title: "CREED",
+      subtitle: "Royal Exclusives",
+      featured: false,
     },
     {
       id: 3,
-      image: '/api/placeholder/500/600',
-      title: 'MAISON RARE',
-      subtitle: 'Artisan Series',
-      featured: false
+      image: "/api/placeholder/500/600",
+      title: "MAISON RARE",
+      subtitle: "Artisan Series",
+      featured: false,
     },
     {
       id: 4,
-      image: '/api/placeholder/500/600',
-      title: 'BY KILIAN',
-      subtitle: 'Sacred Wood',
-      featured: true
+      image: "/api/placeholder/500/600",
+      title: "BY KILIAN",
+      subtitle: "Sacred Wood",
+      featured: true,
     },
     {
       id: 5,
-      image: '/api/placeholder/500/600',
-      title: 'AMOUAGE',
-      subtitle: 'Jubilation XXV',
-      featured: false
-    }
+      image: "/api/placeholder/500/600",
+      title: "AMOUAGE",
+      subtitle: "Jubilation XXV",
+      featured: false,
+    },
   ];
 
   return (
@@ -115,7 +132,9 @@ export default function Index() {
       <div className="bg-black text-white py-2 px-4 text-center text-sm">
         <div className="container flex items-center justify-center gap-4">
           <span>Free samples + free worldwide shipping</span>
-          <button className="text-gray-300 hover:underline text-xs">How to get</button>
+          <button className="text-gray-300 hover:underline text-xs">
+            How to get
+          </button>
         </div>
       </div>
 
@@ -126,12 +145,32 @@ export default function Index() {
             <Link to="/" className="font-serif text-2xl font-bold text-black">
               NICHE
             </Link>
-            
+
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/catalog" className="text-text hover:text-black transition-colors">Catalog</Link>
-              <Link to="/new" className="text-text hover:text-black transition-colors">New</Link>
-              <Link to="/bestsellers" className="text-text hover:text-black transition-colors">Bestsellers</Link>
-              <Link to="/brands" className="text-text hover:text-black transition-colors">Brands</Link>
+              <Link
+                to="/catalog"
+                className="text-text hover:text-black transition-colors"
+              >
+                Catalog
+              </Link>
+              <Link
+                to="/new"
+                className="text-text hover:text-black transition-colors"
+              >
+                New
+              </Link>
+              <Link
+                to="/bestsellers"
+                className="text-text hover:text-black transition-colors"
+              >
+                Bestsellers
+              </Link>
+              <Link
+                to="/brands"
+                className="text-text hover:text-black transition-colors"
+              >
+                Brands
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
@@ -157,12 +196,15 @@ export default function Index() {
             className="w-full h-full object-cover"
             poster="/api/placeholder/1920/1080"
           >
-            <source src="https://cdn.builder.io/o/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F8abd0a1430ec47cfa70b46a69d9a6475?alt=media&token=d7d6aa6e-f01a-47e6-a3c8-4c993330c75b&apiKey=aa57fa3495ed440bb8d5e43633a5eae3" type="video/mp4" />
+            <source
+              src="https://cdn.builder.io/o/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F8abd0a1430ec47cfa70b46a69d9a6475?alt=media&token=d7d6aa6e-f01a-47e6-a3c8-4c993330c75b&apiKey=aa57fa3495ed440bb8d5e43633a5eae3"
+              type="video/mp4"
+            />
           </video>
           {/* Fallback background image */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url(/api/placeholder/1920/1080)' }}
+            style={{ backgroundImage: "url(/api/placeholder/1920/1080)" }}
           ></div>
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
@@ -171,22 +213,32 @@ export default function Index() {
           <div className="max-w-6xl mx-auto">
             {/* Countdown Timer */}
             <div className="text-center mb-12">
-              <p className="text-white/80 text-lg mb-4">Limited Time Offer Ends In:</p>
+              <p className="text-white/80 text-lg mb-4">
+                Limited Time Offer Ends In:
+              </p>
               <div className="flex justify-center gap-4 mb-8">
                 <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">{timeLeft.days.toString().padStart(2, '0')}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {timeLeft.days.toString().padStart(2, "0")}
+                  </div>
                   <div className="text-white/70 text-sm">DAYS</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">{timeLeft.hours.toString().padStart(2, '0')}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {timeLeft.hours.toString().padStart(2, "0")}
+                  </div>
                   <div className="text-white/70 text-sm">HOURS</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {timeLeft.minutes.toString().padStart(2, "0")}
+                  </div>
                   <div className="text-white/70 text-sm">MINUTES</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {timeLeft.seconds.toString().padStart(2, "0")}
+                  </div>
                   <div className="text-white/70 text-sm">SECONDS</div>
                 </div>
               </div>
@@ -204,16 +256,18 @@ export default function Index() {
                   </p>
                   <p className="text-white/80 text-lg">
                     Try 2ml fragrance samples with free worldwide delivery.
-                    Simply choose your gift set, link your card, and receive premium samples at no cost.
+                    Simply choose your gift set, link your card, and receive
+                    premium samples at no cost.
                   </p>
                 </div>
-
               </div>
 
               {/* Right Column - Steps Process */}
               <div className="w-full lg:w-1/2">
                 <div className="bg-white/95 backdrop-blur rounded-xl p-8 shadow-2xl">
-                  <h3 className="font-serif text-2xl font-bold mb-8 text-black text-center">How To Get Free Samples</h3>
+                  <h3 className="font-serif text-2xl font-bold mb-8 text-black text-center">
+                    How To Get Free Samples
+                  </h3>
 
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -221,8 +275,14 @@ export default function Index() {
                         <Gift className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-lg mb-2 text-black">Choose Gift Set</h4>
-                        <p className="text-gray-600">Select from our curated collection of 2ml premium fragrance samples. Each sample provides 30-40 applications.</p>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Choose Gift Set
+                        </h4>
+                        <p className="text-gray-600">
+                          Select from our curated collection of 2ml premium
+                          fragrance samples. Each sample provides 30-40
+                          applications.
+                        </p>
                       </div>
                     </div>
 
@@ -231,8 +291,14 @@ export default function Index() {
                         <CreditCard className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-lg mb-2 text-black">Link Your Card</h4>
-                        <p className="text-gray-600">Secure your order with card details. No charge for samples - only pay if you decide to purchase full-size bottles.</p>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Link Your Card
+                        </h4>
+                        <p className="text-gray-600">
+                          Secure your order with card details. No charge for
+                          samples - only pay if you decide to purchase full-size
+                          bottles.
+                        </p>
                       </div>
                     </div>
 
@@ -241,8 +307,14 @@ export default function Index() {
                         <Package className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-lg mb-2 text-black">Receive Samples</h4>
-                        <p className="text-gray-600">Free worldwide shipping. Your sample kit arrives within 3-7 days in elegant packaging with detailed fragrance notes.</p>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Receive Samples
+                        </h4>
+                        <p className="text-gray-600">
+                          Free worldwide shipping. Your sample kit arrives
+                          within 3-7 days in elegant packaging with detailed
+                          fragrance notes.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -259,12 +331,12 @@ export default function Index() {
         </div>
       </section>
 
-
-
       {/* Premium Collection Showcase - 5 Large Windows */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container">
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">Premium Collection Showcase</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">
+            Premium Collection Showcase
+          </h2>
 
           {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
@@ -274,7 +346,11 @@ export default function Index() {
                 className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl"
               >
                 <img
-                  src={item.id === 2 ? 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a' : item.image}
+                  src={
+                    item.id === 2
+                      ? "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a"
+                      : item.image
+                  }
                   alt={`${item.title} ${item.subtitle}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -283,15 +359,21 @@ export default function Index() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    backgroundImage: item.id === 1 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9)' :
-                                   item.id === 2 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc50c8ec0c8aa44b9a20eb42b27c86139?format=webp)' :
-                                   item.id === 3 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp)' :
-                                   item.id === 4 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)' :
-                                   item.id === 5 ? 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)' :
-                                   'linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: item.id === 5 ? '50% 50%' : 'center',
-                    backgroundSize: 'cover'
+                    backgroundImage:
+                      item.id === 1
+                        ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9)"
+                        : item.id === 2
+                          ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc50c8ec0c8aa44b9a20eb42b27c86139?format=webp)"
+                          : item.id === 3
+                            ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp)"
+                            : item.id === 4
+                              ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)"
+                              : item.id === 5
+                                ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
+                                : "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: item.id === 5 ? "50% 50%" : "center",
+                    backgroundSize: "cover",
                   }}
                 />
 
@@ -300,16 +382,17 @@ export default function Index() {
                   <div
                     className="absolute"
                     style={{
-                      backgroundImage: 'url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)',
-                      backgroundPosition: '50% 50%',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
-                      bottom: '0px',
-                      left: '-1286px',
-                      right: '0px',
-                      top: '-475px',
-                      marginLeft: '17px',
-                      width: '336px'
+                      backgroundImage:
+                        "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)",
+                      backgroundPosition: "50% 50%",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                      bottom: "0px",
+                      left: "-1286px",
+                      right: "0px",
+                      top: "-475px",
+                      marginLeft: "17px",
+                      width: "336px",
                     }}
                   />
                 )}
@@ -350,7 +433,9 @@ export default function Index() {
       {/* Trust Points */}
       <section className="py-12 sm:py-16 bg-gray-50">
         <div className="container">
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">Why Choose Us</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">
+            Why Choose Us
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {trustPoints.map((point, index) => (
@@ -358,8 +443,12 @@ export default function Index() {
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-black">
                   {point.icon}
                 </div>
-                <h3 className="font-bold text-lg sm:text-xl mb-2">{point.title}</h3>
-                <p className="text-gray-600 text-sm sm:text-base">{point.description}</p>
+                <h3 className="font-bold text-lg sm:text-xl mb-2">
+                  {point.title}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  {point.description}
+                </p>
               </div>
             ))}
           </div>
@@ -369,17 +458,22 @@ export default function Index() {
       {/* Sample Process Details */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container">
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-black">The Complete Sample Experience</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-black">
+            The Complete Sample Experience
+          </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
             <div className="text-center">
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <span className="text-xl sm:text-2xl font-bold">1</span>
               </div>
-              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Select Your Samples</h3>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Select Your Samples
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Browse our premium collection and choose up to 3 samples from world-renowned niche fragrance houses.
-                Each 2ml sample provides 30-40 applications - enough to truly experience the fragrance.
+                Browse our premium collection and choose up to 3 samples from
+                world-renowned niche fragrance houses. Each 2ml sample provides
+                30-40 applications - enough to truly experience the fragrance.
               </p>
             </div>
 
@@ -387,10 +481,13 @@ export default function Index() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <span className="text-xl sm:text-2xl font-bold">2</span>
               </div>
-              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Secure Checkout</h3>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Secure Checkout
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Link your payment card for security. No charges apply to samples - you only pay if you decide
-                to purchase full-size bottles. Complete transparency with no hidden fees.
+                Link your payment card for security. No charges apply to samples
+                - you only pay if you decide to purchase full-size bottles.
+                Complete transparency with no hidden fees.
               </p>
             </div>
 
@@ -398,16 +495,18 @@ export default function Index() {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
                 <span className="text-xl sm:text-2xl font-bold">3</span>
               </div>
-              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">Free Delivery Worldwide</h3>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Free Delivery Worldwide
+              </h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Your samples arrive in premium packaging with detailed fragrance notes and application tips.
-                Free shipping globally with tracking included. Delivery within 3-7 business days.
+                Your samples arrive in premium packaging with detailed fragrance
+                notes and application tips. Free shipping globally with tracking
+                included. Delivery within 3-7 business days.
               </p>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Reviews Carousel */}
       <ReviewsCarousel />
@@ -419,7 +518,8 @@ export default function Index() {
             Only 47 Samples Left
           </h2>
           <p className="text-lg mb-8 opacity-90">
-            Order your free sample today and discover the world of niche fragrances
+            Order your free sample today and discover the world of niche
+            fragrances
           </p>
           <button className="btn bg-white text-black hover:bg-gray-100">
             Order Sample Now
@@ -434,10 +534,11 @@ export default function Index() {
             <div>
               <h3 className="font-serif text-xl font-bold mb-4">NICHE</h3>
               <p className="text-gray-400 text-sm">
-                Premium niche fragrances with free samples and worldwide shipping.
+                Premium niche fragrances with free samples and worldwide
+                shipping.
               </p>
             </div>
-            
+
             <div className="ml-[120px]">
               <h4 className="font-bold mb-4">Newsletter</h4>
               <p className="text-gray-400 text-sm mb-4">
@@ -455,7 +556,7 @@ export default function Index() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
             <p>&copy; 2024 NICHE. All rights reserved.</p>
           </div>

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { useState } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 interface Review {
   id: number;
@@ -15,67 +15,65 @@ interface Review {
 const reviews: Review[] = [
   {
     id: 1,
-    name: 'Anna K.',
-    avatar: '/api/placeholder/60/60',
+    name: "Anna K.",
+    avatar: "/api/placeholder/60/60",
     rating: 5,
-    text: 'Incredible fragrance! First ordered Tom Ford Oud Venetian sample, now buying the full-size bottle. Quality is outstanding.',
-    product: 'Tom Ford Oud Venetian',
-    date: '2024-01-15',
-    verified: true
+    text: "Incredible fragrance! First ordered Tom Ford Oud Venetian sample, now buying the full-size bottle. Quality is outstanding.",
+    product: "Tom Ford Oud Venetian",
+    date: "2024-01-15",
+    verified: true,
   },
   {
     id: 2,
-    name: 'Michael P.',
-    avatar: '/api/placeholder/60/60',
+    name: "Michael P.",
+    avatar: "/api/placeholder/60/60",
     rating: 5,
-    text: 'Excellent service! Samples arrive quickly and free. Aventus from Creed exceeded all expectations.',
-    product: 'Creed Aventus',
-    date: '2024-01-12',
-    verified: true
+    text: "Excellent service! Samples arrive quickly and free. Aventus from Creed exceeded all expectations.",
+    product: "Creed Aventus",
+    date: "2024-01-12",
+    verified: true,
   },
   {
     id: 3,
-    name: 'Elena M.',
-    avatar: '/api/placeholder/60/60',
+    name: "Elena M.",
+    avatar: "/api/placeholder/60/60",
     rating: 4,
-    text: 'Love trying new fragrances. Found many interesting niche brands here. Maison Rare was especially impressive.',
-    product: 'Maison Rare Noir Intense',
-    date: '2024-01-10',
-    verified: true
+    text: "Love trying new fragrances. Found many interesting niche brands here. Maison Rare was especially impressive.",
+    product: "Maison Rare Noir Intense",
+    date: "2024-01-10",
+    verified: true,
   },
   {
     id: 4,
-    name: 'Dmitry S.',
-    avatar: '/api/placeholder/60/60',
+    name: "Dmitry S.",
+    avatar: "/api/placeholder/60/60",
     rating: 5,
-    text: 'Perfect way to choose a fragrance! Used to be afraid of buying expensive perfumes blindly, now I always try first.',
-    product: 'By Kilian Black Phantom',
-    date: '2024-01-08',
-    verified: true
+    text: "Perfect way to choose a fragrance! Used to be afraid of buying expensive perfumes blindly, now I always try first.",
+    product: "By Kilian Black Phantom",
+    date: "2024-01-08",
+    verified: true,
   },
   {
     id: 5,
-    name: 'Olga V.',
-    avatar: '/api/placeholder/60/60',
+    name: "Olga V.",
+    avatar: "/api/placeholder/60/60",
     rating: 5,
-    text: 'Amazing fragrance collection! Delivery is really free and fast. Recommend to all niche perfume lovers.',
-    product: 'Amouage Jubilation XXV',
-    date: '2024-01-05',
-    verified: true
-  }
+    text: "Amazing fragrance collection! Delivery is really free and fast. Recommend to all niche perfume lovers.",
+    product: "Amouage Jubilation XXV",
+    date: "2024-01-05",
+    verified: true,
+  },
 ];
 
 export default function ReviewsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
         className={`w-4 h-4 ${
-          i < rating 
-            ? 'fill-yellow-400 text-yellow-400' 
-            : 'text-gray-300'
+          i < rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
         }`}
       />
     ));
@@ -133,7 +131,7 @@ export default function ReviewsCarousel() {
               <article
                 key={`${review.id}-${currentIndex}-${index}`}
                 className={`bg-white border border-border rounded-xl p-6 transition-all duration-med ${
-                  index === 0 ? 'transform scale-105 shadow-lg' : 'opacity-80'
+                  index === 0 ? "transform scale-105 shadow-lg" : "opacity-80"
                 }`}
               >
                 {/* Quote Icon */}
@@ -144,7 +142,9 @@ export default function ReviewsCarousel() {
                 {/* Rating */}
                 <div className="flex items-center mb-4">
                   {renderStars(review.rating)}
-                  <span className="ml-2 text-sm font-medium">{review.rating}/5</span>
+                  <span className="ml-2 text-sm font-medium">
+                    {review.rating}/5
+                  </span>
                 </div>
 
                 {/* Review Text */}
@@ -169,10 +169,10 @@ export default function ReviewsCarousel() {
                       )}
                     </div>
                     <p className="text-xs text-muted">
-                      {new Date(review.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
+                      {new Date(review.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </p>
                   </div>
@@ -188,9 +188,9 @@ export default function ReviewsCarousel() {
                 key={index}
                 onClick={() => goToReview(index)}
                 className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentIndex 
-                    ? 'bg-black' 
-                    : 'bg-border hover:bg-gray-400'
+                  index === currentIndex
+                    ? "bg-black"
+                    : "bg-border hover:bg-gray-400"
                 }`}
                 aria-label={`Go to review ${index + 1}`}
               />
