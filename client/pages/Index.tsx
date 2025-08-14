@@ -387,7 +387,7 @@ export default function Index() {
                 />
 
                 {/* Additional overlay for AMOUAGE */}
-                {item.id === 5 && (
+                {(item.id === 5 || item.id === 6) && (
                   <div
                     className="absolute"
                     style={{
