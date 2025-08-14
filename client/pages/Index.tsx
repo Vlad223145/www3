@@ -74,7 +74,7 @@ export default function Index() {
     setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
-  const trustPoints = [
+  const trustPoints = useMemo(() => [
     {
       icon: <Check className="w-6 h-6" />,
       title: "Free Samples",
@@ -95,7 +95,7 @@ export default function Index() {
       title: "14 Day Returns",
       description: "Full money back guarantee",
     },
-  ];
+  ], []);
 
   // Large showcase items for the gallery section - only 6 items - memoized
   const showcaseItems = useMemo(() => [
