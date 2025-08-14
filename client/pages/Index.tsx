@@ -30,6 +30,7 @@ export default function Index() {
     minutes: 0,
     seconds: 0,
   });
+  const { addToCart, getTotalItems, toggleCart } = useCart();
 
   // Countdown timer effect
   useEffect(() => {
