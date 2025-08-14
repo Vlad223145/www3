@@ -136,9 +136,21 @@
     scroll-behavior: auto !important;
   }
 
-  /* Disable all smooth scrolling */
-  * {
+  /* Disable all smooth scrolling and jumping */
+  *, *::before, *::after {
     scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+  }
+
+  /* Prevent layout shifts and jumps */
+  body, html {
+    scroll-restoration: manual !important;
+  }
+
+  /* Disable scroll anchoring */
+  * {
+    overflow-anchor: none !important;
   }
 
   /* Prevent video from causing layout issues */
