@@ -356,7 +356,8 @@ export default function Index() {
                       : item.image
                   }
                   alt={`${item.title} ${item.subtitle}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                  loading="lazy"
                 />
 
                 {/* Overlay */}
