@@ -106,8 +106,9 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     overflow-x: hidden;
+    height: 100%;
   }
 
   body {
@@ -115,6 +116,33 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Prevent layout shifts */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Improve scroll performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent video from causing layout issues */
+  video {
+    will-change: auto;
+    transform: translateZ(0);
+  }
+
+  /* Optimize animations */
+  .group:hover img {
+    will-change: transform;
+  }
+
+  .group img {
+    will-change: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -260,13 +288,15 @@
   animation: pulse 800ms ease-in-out 1;
 }
 
-/* Enhanced hover effects */
+/* Enhanced hover effects - optimized */
 .product-card-hover {
   transition: transform var(--fast) var(--ease);
+  will-change: auto;
 }
 
 .product-card-hover:hover {
   transform: translateY(-3px);
+  will-change: transform;
 }
 
 .product-card-hover:hover .product-image {
@@ -286,12 +316,6 @@
 .product-card-hover:hover .product-cta-slide {
   transform: translateY(0);
   opacity: 1;
-}
-
-/* Hero parallax */
-.hero-parallax {
-  will-change: transform;
-  transition: transform var(--fast) linear;
 }
 
 /* Success modal */
@@ -324,7 +348,7 @@
     transition-duration: 0.01ms !important;
   }
 
-  .hero-parallax {
-    transform: none !important;
+  html {
+    scroll-behavior: auto !important;
   }
 }
