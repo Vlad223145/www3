@@ -173,10 +173,18 @@ export default function Index() {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="none"
             className="w-full h-full object-cover"
             poster="/api/placeholder/1920/1080"
-            style={{ willChange: 'auto', transform: 'translateZ(0)' }}
+            style={{
+              willChange: 'auto',
+              transform: 'translateZ(0)',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%'
+            }}
           >
             <source
               src="https://cdn.builder.io/o/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F8abd0a1430ec47cfa70b46a69d9a6475?alt=media&token=d7d6aa6e-f01a-47e6-a3c8-4c993330c75b&apiKey=aa57fa3495ed440bb8d5e43633a5eae3"
