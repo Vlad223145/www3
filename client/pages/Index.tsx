@@ -97,8 +97,8 @@ export default function Index() {
     },
   ];
 
-  // Large showcase items for the gallery section - only 5 items
-  const showcaseItems = [
+  // Large showcase items for the gallery section - only 6 items - memoized
+  const showcaseItems = useMemo(() => [
     {
       id: 1,
       image: "/api/placeholder/500/600",
@@ -141,7 +141,7 @@ export default function Index() {
       subtitle: "Jubilation XXV",
       featured: false,
     },
-  ];
+  ], []);
 
   return (
     <div className="min-h-screen bg-bg">
