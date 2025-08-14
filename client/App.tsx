@@ -12,6 +12,7 @@ import ProductDetail from "./pages/ProductDetail";
 import NotFound from "./pages/NotFound";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
+import FloatingCartButton from "./components/FloatingCartButton";
 
 const queryClient = new QueryClient();
 
