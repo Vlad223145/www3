@@ -119,7 +119,7 @@ export default function Index() {
   const showcaseItems = useMemo(() => [
     {
       id: 1,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
       title: "TOM FORD",
       subtitle: "Private Blend Collection",
       featured: true,
@@ -133,28 +133,28 @@ export default function Index() {
     },
     {
       id: 3,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp",
       title: "MAISON RARE",
       subtitle: "Artisan Series",
       featured: false,
     },
     {
       id: 4,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab",
       title: "BY KILIAN",
       subtitle: "Sacred Wood",
       featured: true,
     },
     {
       id: 5,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129",
       title: "AMOUAGE",
       subtitle: "Jubilation XXV",
       featured: false,
     },
     {
       id: 6,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp",
       title: "AMOUAGE",
       subtitle: "Jubilation XXV",
       featured: false,
