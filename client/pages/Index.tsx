@@ -158,7 +158,17 @@ export default function Index() {
 
             <div className="flex items-center space-x-4">
               <Search className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
-              <ShoppingBag className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
+              <button
+                onClick={toggleCart}
+                className="relative cursor-pointer hover:text-black transition-colors"
+              >
+                <ShoppingBag className="w-5 h-5 text-muted" />
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </button>
               <button className="md:hidden">
                 <Menu className="w-5 h-5 text-muted" />
               </button>
