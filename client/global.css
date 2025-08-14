@@ -109,19 +109,21 @@
     scroll-behavior: auto !important;
     overflow-x: hidden;
     height: 100%;
-    scroll-padding-top: 0;
-    scroll-snap-type: none;
+    scroll-padding-top: 0 !important;
+    scroll-snap-type: none !important;
+    scroll-restoration: manual;
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     min-height: 100vh;
     position: relative;
     overscroll-behavior: none;
     scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
   }
 
   /* Prevent layout shifts */
