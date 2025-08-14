@@ -148,37 +148,11 @@ export default function Index() {
       {/* Navigation */}
       <nav className="bg-white border-b border-border sticky top-0 z-50">
         <div className="container py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             <Link to="/" className="font-serif text-2xl font-bold text-black">
               NICHE
             </Link>
 
-            <div className="hidden md:flex items-center space-x-8">
-              <Link
-                to="/catalog"
-                className="text-text hover:text-black transition-colors"
-              >
-                Catalog
-              </Link>
-              <Link
-                to="/new"
-                className="text-text hover:text-black transition-colors"
-              >
-                New
-              </Link>
-              <Link
-                to="/bestsellers"
-                className="text-text hover:text-black transition-colors"
-              >
-                Bestsellers
-              </Link>
-              <Link
-                to="/brands"
-                className="text-text hover:text-black transition-colors"
-              >
-                Brands
-              </Link>
-            </div>
 
             <div className="flex items-center space-x-4">
               <Search className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
@@ -218,39 +192,6 @@ export default function Index() {
 
         <div className="container relative z-10 py-20">
           <div className="max-w-6xl mx-auto">
-            {/* Countdown Timer */}
-            <div className="text-center mb-12">
-              <p className="text-white/80 text-lg mb-4">
-                Limited Time Offer Ends In:
-              </p>
-              <div className="flex justify-center gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">
-                    {timeLeft.days.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-white/70 text-sm">DAYS</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">
-                    {timeLeft.hours.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-white/70 text-sm">HOURS</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">
-                    {timeLeft.minutes.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-white/70 text-sm">MINUTES</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
-                  <div className="text-3xl font-bold text-white">
-                    {timeLeft.seconds.toString().padStart(2, "0")}
-                  </div>
-                  <div className="text-white/70 text-sm">SECONDS</div>
-                </div>
-              </div>
-            </div>
-
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               {/* Left Column - Content & Form */}
               <div className="w-full lg:w-1/2 space-y-8">
@@ -266,6 +207,39 @@ export default function Index() {
                     Simply choose your gift set, link your card, and receive
                     premium samples at no cost.
                   </p>
+
+                  {/* Countdown Timer - moved below text */}
+                  <div className="text-center pt-6">
+                    <p className="text-white/80 text-lg mb-4">
+                      Limited Time Offer Ends In:
+                    </p>
+                    <div className="flex justify-center gap-4">
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                        <div className="text-3xl font-bold text-white">
+                          {timeLeft.days.toString().padStart(2, "0")}
+                        </div>
+                        <div className="text-white/70 text-sm">DAYS</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                        <div className="text-3xl font-bold text-white">
+                          {timeLeft.hours.toString().padStart(2, "0")}
+                        </div>
+                        <div className="text-white/70 text-sm">HOURS</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                        <div className="text-3xl font-bold text-white">
+                          {timeLeft.minutes.toString().padStart(2, "0")}
+                        </div>
+                        <div className="text-white/70 text-sm">MINUTES</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
+                        <div className="text-3xl font-bold text-white">
+                          {timeLeft.seconds.toString().padStart(2, "0")}
+                        </div>
+                        <div className="text-white/70 text-sm">SECONDS</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
