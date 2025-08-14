@@ -336,7 +336,8 @@ export default function Index() {
             {showcaseItems.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl"
+                className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl cursor-pointer"
+                onClick={() => window.location.href = `/product/${item.id}`}
               >
                 <img
                   src={
@@ -392,22 +393,35 @@ export default function Index() {
                   />
                 )}
 
+                {/* Add to Cart Button - always visible at bottom */}
+                <div className="absolute bottom-4 left-4 right-4 z-10">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addToCart({
+                        id: item.id.toString(),
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        image: item.image,
+                        price: 250
+                      });
+                    }}
+                    className="w-full bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 border border-white/20"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    <span className="font-medium">Add to Cart</span>
+                  </button>
+                </div>
+
                 {/* Content - only show for BY KILIAN (item.id === 4) */}
                 {item.id === 4 && (
-                  <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-12 xl:p-16">
-                    <h3 className="font-serif text-white text-xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-4">
+                  <div className="absolute bottom-16 left-4 right-4 p-2 lg:p-6">
+                    <h3 className="font-serif text-white text-lg lg:text-2xl xl:text-3xl font-bold mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-white/80 text-base lg:text-xl xl:text-2xl font-light">
+                    <p className="text-white/80 text-sm lg:text-base xl:text-lg font-light">
                       {item.subtitle}
                     </p>
-
-                    {/* Hover CTA */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4 lg:mt-8">
-                      <button className="bg-white text-black px-6 py-3 lg:px-8 lg:py-4 xl:px-10 xl:py-5 rounded-lg text-sm lg:text-lg xl:text-xl font-medium hover:bg-gray-100 transition-colors">
-                        View Collection
-                      </button>
-                    </div>
                   </div>
                 )}
 
