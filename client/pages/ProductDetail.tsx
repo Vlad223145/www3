@@ -20,7 +20,7 @@ const getProductById = (id: string) => {
       id: '2',
       title: 'CREED',
       subtitle: 'Royal Exclusives',
-      image: '/api/placeholder/500/600',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a',
       price: 300,
       description: 'A masterpiece from the legendary House of Creed, representing centuries of perfumery expertise and royal heritage. This exclusive fragrance embodies timeless elegance and uncompromising quality.',
       notes: ['Bergamot', 'Blackcurrant', 'Oak', 'Musk'],
