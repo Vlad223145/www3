@@ -31,6 +31,7 @@ export default function Index() {
     seconds: 0,
   });
   const { addToCart, getTotalItems, toggleCart } = useCart();
+  const navigate = useNavigate();
 
   // Debounced navigation to prevent multiple clicks
   const handleProductClick = useCallback((productId: number) => {
