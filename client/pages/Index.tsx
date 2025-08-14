@@ -35,11 +35,8 @@ export default function Index() {
 
   // Debounced navigation to prevent multiple clicks
   const handleProductClick = useCallback((productId: number) => {
-    // Use router navigation instead of window.location to prevent jumping
-    const link = document.createElement('a');
-    link.href = `/product/${productId}`;
-    link.click();
-  }, []);
+    navigate(`/product/${productId}`);
+  }, [navigate]);
 
   // Optimized add to cart handler
   const handleAddToCart = useCallback((e: React.MouseEvent, item: any) => {
