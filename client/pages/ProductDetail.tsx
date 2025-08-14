@@ -30,7 +30,7 @@ const getProductById = (id: string) => {
       id: '3',
       title: 'MAISON RARE',
       subtitle: 'Artisan Series',
-      image: '/api/placeholder/500/600',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp',
       price: 180,
       description: 'An artisanal creation that celebrates the art of independent perfumery. Each bottle represents hours of careful craftsmanship and attention to detail, resulting in a truly unique olfactory experience.',
       notes: ['Vanilla', 'Tobacco', 'Leather', 'Benzoin'],
