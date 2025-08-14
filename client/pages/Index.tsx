@@ -123,7 +123,7 @@ export default function Index() {
   ], []);
 
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-bg pt-20">
       {/* Promo Bar */}
       <div className="bg-black text-white py-2 px-4 text-center text-sm">
         <div className="container flex items-center justify-center gap-4">
