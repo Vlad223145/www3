@@ -10,7 +10,7 @@ const getProductById = (id: string) => {
       id: '1',
       title: 'TOM FORD',
       subtitle: 'Private Blend Collection',
-      image: '/api/placeholder/500/600',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9',
       price: 250,
       description: 'An exquisite fragrance that captures the essence of luxury and sophistication. This Private Blend Collection represents the pinnacle of niche perfumery, featuring rare and precious ingredients sourced from around the world.',
       notes: ['Oud', 'Rose', 'Saffron', 'Amber'],
