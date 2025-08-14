@@ -32,6 +32,23 @@ export default function Index() {
   });
   const { addToCart, getTotalItems, toggleCart } = useCart();
 
+  // Debounced navigation to prevent multiple clicks
+  const handleProductClick = useCallback((productId: number) => {
+    window.location.href = `/product/${productId}`;
+  }, []);
+
+  // Optimized add to cart handler
+  const handleAddToCart = useCallback((e: React.MouseEvent, item: any) => {
+    e.stopPropagation();
+    addToCart({
+      id: item.id.toString(),
+      title: item.title,
+      subtitle: item.subtitle,
+      image: item.image,
+      price: 250
+    });
+  }, [addToCart]);
+
   // Countdown timer effect
   useEffect(() => {
     const timer = setInterval(() => {
