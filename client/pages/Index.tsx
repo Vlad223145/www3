@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   Star,
@@ -57,6 +57,14 @@ export default function Index() {
 
     return () => clearInterval(timer);
   }, []);
+
+  // Memoize countdown display to prevent unnecessary re-renders
+  const countdownDisplay = useMemo(() => ({
+    days: timeLeft.days.toString().padStart(2, "0"),
+    hours: timeLeft.hours.toString().padStart(2, "0"),
+    minutes: timeLeft.minutes.toString().padStart(2, "0"),
+    seconds: timeLeft.seconds.toString().padStart(2, "0")
+  }), [timeLeft]);
 
   const handleSampleOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -228,25 +236,25 @@ export default function Index() {
                     <div className="flex justify-center gap-4">
                       <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
                         <div className="text-3xl font-bold text-white">
-                          {timeLeft.days.toString().padStart(2, "0")}
+                          {countdownDisplay.days}
                         </div>
                         <div className="text-white/70 text-sm">DAYS</div>
                       </div>
                       <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
                         <div className="text-3xl font-bold text-white">
-                          {timeLeft.hours.toString().padStart(2, "0")}
+                          {countdownDisplay.hours}
                         </div>
                         <div className="text-white/70 text-sm">HOURS</div>
                       </div>
                       <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
                         <div className="text-3xl font-bold text-white">
-                          {timeLeft.minutes.toString().padStart(2, "0")}
+                          {countdownDisplay.minutes}
                         </div>
                         <div className="text-white/70 text-sm">MINUTES</div>
                       </div>
                       <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
                         <div className="text-3xl font-bold text-white">
-                          {timeLeft.seconds.toString().padStart(2, "0")}
+                          {countdownDisplay.seconds}
                         </div>
                         <div className="text-white/70 text-sm">SECONDS</div>
                       </div>
