@@ -125,7 +125,7 @@ export default function Index() {
     },
     {
       id: 2,
-      image: "/api/placeholder/500/600",
+      image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a",
       title: "CREED",
       subtitle: "Royal Exclusives",
       featured: false,
