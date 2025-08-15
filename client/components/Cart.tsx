@@ -1,5 +1,6 @@
 import React from "react";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Cart: React.FC = () => {
