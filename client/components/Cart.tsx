@@ -105,8 +105,11 @@ const Cart: React.FC = () => {
                 Clear Cart
               </button>
             </div>
-            <button className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors">
-              Checkout
+            <button
+              onClick={handleCheckout}
+              className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Proceed to Checkout
             </button>
           </div>
         )}
