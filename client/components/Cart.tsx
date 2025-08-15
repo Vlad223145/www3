@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
   const {
     items,
     removeFromCart,
@@ -12,6 +13,11 @@ const Cart: React.FC = () => {
     isOpen,
     toggleCart,
   } = useCart();
+
+  const handleCheckout = () => {
+    toggleCart(); // Close cart
+    navigate("/checkout"); // Navigate to checkout
+  };
 
   if (!isOpen) return null;
 
