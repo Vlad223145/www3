@@ -21,7 +21,10 @@ const Checkout: React.FC = () => {
   });
 
   // Calculate totals
-  const subtotal = items.reduce((sum, item) => sum + (item.price || 250) * item.quantity, 0);
+  const subtotal = items.reduce(
+    (sum, item) => sum + (item.price || 250) * item.quantity,
+    0,
+  );
   const savings = 12.02;
   const vat = subtotal * 0.19; // 19% VAT
   const total = subtotal - savings + vat;
@@ -36,19 +39,23 @@ const Checkout: React.FC = () => {
 
   const currencySymbol = currency === "PLN" ? "PLN" : "$";
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
   const sampleProduct = items[0] || {
-    image: "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
+    image:
+      "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
     title: "Pure Glow Cream",
     subtitle: "Luxury Skincare",
-    price: 250
+    price: 250,
   };
 
   return (
@@ -56,7 +63,10 @@ const Checkout: React.FC = () => {
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <Link to="/" className="flex items-center text-gray-600 hover:text-black">
+          <Link
+            to="/"
+            className="flex items-center text-gray-600 hover:text-black"
+          >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to store
           </Link>
@@ -69,7 +79,9 @@ const Checkout: React.FC = () => {
           <div className="bg-white p-8 rounded-lg shadow-sm border">
             {/* Currency Selection */}
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Choose a currency:</h3>
+              <h3 className="text-sm font-medium text-gray-700 mb-3">
+                Choose a currency:
+              </h3>
               <div className="flex gap-2">
                 <button
                   onClick={() => setCurrency("PLN")}
@@ -98,41 +110,55 @@ const Checkout: React.FC = () => {
             {/* Product */}
             <div className="flex items-center gap-4 py-4 border-b">
               <div className="w-12 h-12 bg-blue-100 rounded-md flex items-center justify-center">
-                <img 
-                  src={sampleProduct.image} 
+                <img
+                  src={sampleProduct.image}
                   alt={sampleProduct.title}
                   className="w-8 h-8 object-cover rounded"
                 />
               </div>
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{sampleProduct.title}</p>
+                <p className="font-medium text-gray-900">
+                  {sampleProduct.title}
+                </p>
               </div>
-              <p className="font-medium">{currencySymbol} {(sampleProduct.price * rate).toFixed(2)}</p>
+              <p className="font-medium">
+                {currencySymbol} {(sampleProduct.price * rate).toFixed(2)}
+              </p>
             </div>
 
             {/* Pricing Breakdown */}
             <div className="space-y-3 py-4 border-b">
               <div className="flex justify-between">
                 <span className="text-gray-600">Subtotal</span>
-                <span>{currencySymbol} {convertedSubtotal.toFixed(2)}</span>
+                <span>
+                  {currencySymbol} {convertedSubtotal.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between text-green-600">
                 <span className="flex items-center gap-1">
-                  <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-medium">SAVE10</span>
+                  <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-medium">
+                    SAVE10
+                  </span>
                   10% off
                 </span>
-                <span>-{currencySymbol} {convertedSavings.toFixed(2)}</span>
+                <span>
+                  -{currencySymbol} {convertedSavings.toFixed(2)}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">VAT (19%)</span>
-                <span>{currencySymbol} {convertedVat.toFixed(2)}</span>
+                <span>
+                  {currencySymbol} {convertedVat.toFixed(2)}
+                </span>
               </div>
             </div>
 
             {/* Total */}
             <div className="flex justify-between py-4">
               <span className="text-lg font-semibold">Total due</span>
-              <span className="text-lg font-semibold">{currencySymbol} {convertedTotal.toFixed(2)}</span>
+              <span className="text-lg font-semibold">
+                {currencySymbol} {convertedTotal.toFixed(2)}
+              </span>
             </div>
           </div>
 
@@ -147,11 +173,15 @@ const Checkout: React.FC = () => {
 
             {/* Shipping Information */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
-              <h2 className="text-lg font-semibold mb-4">Shipping information</h2>
-              
+              <h2 className="text-lg font-semibold mb-4">
+                Shipping information
+              </h2>
+
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -163,7 +193,9 @@ const Checkout: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Shipping address</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Shipping address
+                  </label>
                   <input
                     type="text"
                     name="fullName"
@@ -172,7 +204,7 @@ const Checkout: React.FC = () => {
                     placeholder="Full name"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
                   />
-                  
+
                   <select
                     name="country"
                     value={formData.country}
@@ -203,7 +235,7 @@ const Checkout: React.FC = () => {
             {/* Payment Method */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
               <h2 className="text-lg font-semibold mb-4">Payment method</h2>
-              
+
               <div className="space-y-4">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
@@ -214,15 +246,15 @@ const Checkout: React.FC = () => {
                     onChange={() => setSelectedPayment("card")}
                     className="w-4 h-4"
                   />
-                  <span className="flex items-center gap-2">
-                    💳 Card
-                  </span>
+                  <span className="flex items-center gap-2">💳 Card</span>
                 </label>
 
                 {/* Card Information */}
                 <div className="ml-7 space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Card information</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Card information
+                    </label>
                     <input
                       type="text"
                       name="cardNumber"
@@ -252,7 +284,11 @@ const Checkout: React.FC = () => {
                     <div className="flex justify-end mt-1">
                       <div className="flex gap-1">
                         <img src="/visa.png" alt="Visa" className="w-8 h-5" />
-                        <img src="/mastercard.png" alt="Mastercard" className="w-8 h-5" />
+                        <img
+                          src="/mastercard.png"
+                          alt="Mastercard"
+                          className="w-8 h-5"
+                        />
                         <img src="/amex.png" alt="Amex" className="w-8 h-5" />
                       </div>
                     </div>
@@ -266,7 +302,9 @@ const Checkout: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-4 h-4"
                     />
-                    <span className="text-sm">Billing info is same as shipping</span>
+                    <span className="text-sm">
+                      Billing info is same as shipping
+                    </span>
                   </label>
 
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -277,7 +315,9 @@ const Checkout: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-4 h-4"
                     />
-                    <span className="text-sm">Save my payment information for future purchases</span>
+                    <span className="text-sm">
+                      Save my payment information for future purchases
+                    </span>
                   </label>
 
                   <label className="flex items-center gap-3 cursor-pointer">
@@ -304,13 +344,22 @@ const Checkout: React.FC = () => {
                       placeholder="+12 345 678"
                       className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
-                    <span className="text-sm text-gray-500 px-2 py-1 bg-gray-100 rounded">Optional</span>
+                    <span className="text-sm text-gray-500 px-2 py-1 bg-gray-100 rounded">
+                      Optional
+                    </span>
                   </div>
 
                   <p className="text-xs text-gray-500">
-                    By providing my phone number, I agree to create a Link account and save my payment info to Link, according to the{" "}
-                    <a href="#" className="text-blue-600 hover:underline">Link Terms</a> and{" "}
-                    <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>.
+                    By providing my phone number, I agree to create a Link
+                    account and save my payment info to Link, according to the{" "}
+                    <a href="#" className="text-blue-600 hover:underline">
+                      Link Terms
+                    </a>{" "}
+                    and{" "}
+                    <a href="#" className="text-blue-600 hover:underline">
+                      Privacy Policy
+                    </a>
+                    .
                   </p>
 
                   <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -332,9 +381,15 @@ const Checkout: React.FC = () => {
             {/* Footer */}
             <div className="text-center text-xs text-gray-400 space-x-4">
               <span>Powered by stripe</span>
-              <a href="#" className="hover:underline">Legal</a>
-              <a href="#" className="hover:underline">Returns</a>
-              <a href="#" className="hover:underline">Contact</a>
+              <a href="#" className="hover:underline">
+                Legal
+              </a>
+              <a href="#" className="hover:underline">
+                Returns
+              </a>
+              <a href="#" className="hover:underline">
+                Contact
+              </a>
             </div>
           </div>
         </div>
