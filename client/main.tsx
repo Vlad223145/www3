@@ -3,8 +3,9 @@ import App from "./App";
 
 const container = document.getElementById("root")!;
 
-// Check if root already exists to prevent multiple createRoot calls
-if (!container._reactRootContainer) {
+// Prevent multiple root creation during hot reload
+if (!(window as any).__reactRoot) {
   const root = createRoot(container);
+  (window as any).__reactRoot = root;
   root.render(<App />);
 }
