@@ -314,7 +314,7 @@ const Checkout: React.FC = () => {
             </button>
 
             <p className="text-center text-sm text-gray-500">
-              🔄 Free returns and exchanges
+              <p>Free returns and exchanges</p>
             </p>
 
             {/* Footer */}
