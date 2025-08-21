@@ -281,19 +281,6 @@ const Checkout: React.FC = () => {
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      name="billingInfo"
-                      checked={formData.billingInfo}
-                      onChange={handleInputChange}
-                      className="w-4 h-4"
-                    />
-                    <span className="text-sm">
-                      Billing info is same as shipping
-                    </span>
-                  </label>
-
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
                       name="savePayment"
                       checked={formData.savePayment}
                       onChange={handleInputChange}
