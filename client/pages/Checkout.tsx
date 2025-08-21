@@ -291,35 +291,6 @@ const Checkout: React.FC = () => {
                     </span>
                   </label>
 
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="payment"
-                      value="przelewy24"
-                      checked={selectedPayment === "przelewy24"}
-                      onChange={() => setSelectedPayment("przelewy24")}
-                      className="w-4 h-4"
-                    />
-                    <span className="flex items-center gap-2">
-                      🏦 Przelewy24
-                    </span>
-                  </label>
-
-                  <div className="flex gap-2 items-center">
-                    <span className="text-sm text-gray-600">📞</span>
-                    <input
-                      type="tel"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
-                      onChange={handleInputChange}
-                      placeholder="+12 345 678"
-                      className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                    <span className="text-sm text-gray-500 px-2 py-1 bg-gray-100 rounded">
-                      Optional
-                    </span>
-                  </div>
-
                   <p className="text-xs text-gray-500">
                     By providing my phone number, I agree to create a Link
                     account and save my payment info to Link, according to the{" "}
