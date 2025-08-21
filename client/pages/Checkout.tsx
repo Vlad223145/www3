@@ -229,7 +229,7 @@ const Checkout: React.FC = () => {
                     onChange={() => setSelectedPayment("card")}
                     className="w-4 h-4"
                   />
-                  <span className="flex items-center gap-2">💳 Card</span>
+                  <span className="flex items-center gap-2"><p>Card</p></span>
                 </label>
 
                 {/* Card Information */}
