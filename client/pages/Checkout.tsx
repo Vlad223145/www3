@@ -318,8 +318,10 @@ const Checkout: React.FC = () => {
             </p>
 
             {/* Footer */}
-            <div className="text-center text-xs text-gray-400 space-x-4">
-              <span>Powered by stripe</span>
+            <div className="text-center text-xs text-gray-400 space-x-4" style={{ marginTop: "13px" }}>
+              <span style={{ marginTop: "-1px", padding: "23px 0 27px" }}>
+                <p>Powered by STRIPE</p>
+              </span>
               <a href="#" className="hover:underline">
                 Legal
               </a>
