@@ -84,16 +84,6 @@ const Checkout: React.FC = () => {
               </h3>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setCurrency("PLN")}
-                  className={`px-4 py-2 border rounded-md text-sm font-medium ${
-                    currency === "PLN"
-                      ? "bg-gray-100 border-gray-300"
-                      : "bg-white border-gray-200 hover:bg-gray-50"
-                  }`}
-                >
-                  🇵🇱 PLN {convertedTotal.toFixed(2)}
-                </button>
-                <button
                   onClick={() => setCurrency("USD")}
                   className={`px-4 py-2 border rounded-md text-sm font-medium ${
                     currency === "USD"
