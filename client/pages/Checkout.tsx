@@ -154,13 +154,6 @@ const Checkout: React.FC = () => {
 
           {/* Right Column - Checkout Form */}
           <div className="space-y-6">
-            {/* Apple Pay */}
-            <button className="w-full bg-black text-white py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors">
-              🍎 Pay
-            </button>
-
-            <div className="text-center text-sm text-gray-500">Or</div>
-
             {/* Shipping Information */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
               <h2 className="text-lg font-semibold mb-4">
