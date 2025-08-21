@@ -304,9 +304,6 @@ const Checkout: React.FC = () => {
                     .
                   </p>
 
-                  <p className="text-xs text-gray-500 flex items-center gap-1">
-                    🔒 Link
-                  </p>
                 </div>
               </div>
             </div>
