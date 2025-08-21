@@ -266,13 +266,14 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className="flex justify-end mt-1">
                       <div className="flex gap-1">
-                        <img src="/visa.png" alt="Visa" className="w-8 h-5" />
+                        <img src="/visa.png" alt="Visa" className="w-8 h-5" style={{ marginTop: "-32px" }} />
                         <img
                           src="/mastercard.png"
                           alt="Mastercard"
                           className="w-8 h-5"
+                          style={{ marginTop: "-32px" }}
                         />
-                        <img src="/amex.png" alt="Amex" className="w-8 h-5" />
+                        <img src="/amex.png" alt="Amex" className="w-8 h-5" style={{ marginTop: "-32px" }} />
                       </div>
                     </div>
                   </div>
