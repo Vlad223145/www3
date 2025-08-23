@@ -411,6 +411,65 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Premium Brand Promotion */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-black text-white">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
+              Discover Premium Niche Fragrances
+            </h2>
+            <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 text-gray-300 leading-relaxed">
+              Experience the world's most exclusive fragrance houses with our complimentary sample program
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 text-left max-w-3xl mx-auto">
+              <div>
+                <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                  Premium Heritage Brands
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Our curated collection features the most prestigious niche fragrance houses from around the world.
+                  From Tom Ford's exclusive Private Blend Collection to Creed's centuries-old royal formulations,
+                  experience fragrances that define luxury and sophistication.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                  Try Entire Collections FREE
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Don't just sample one fragrance – explore complete collections from your favorite houses.
+                  Each 2ml sample provides 30-40 applications, giving you weeks to truly understand and appreciate
+                  these complex, artisanal compositions before making any commitment.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-900 rounded-2xl">
+              <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                The Niche Fragrance Difference
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-lg">
+                Unlike mass-market fragrances, niche perfumes use the finest raw materials and traditional crafting methods.
+                These are fragrances created by master perfumers without commercial constraints – pure artistic expression
+                in a bottle. Our sample program lets you discover these exceptional creations risk-free,
+                with free worldwide shipping and no purchase obligations.
+              </p>
+            </div>
+
+            <div className="mt-8 sm:mt-10">
+              <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base text-gray-400">
+                <span>✓ 100% Authentic Fragrances</span>
+                <span>✓ Free Worldwide Shipping</span>
+                <span>✓ No Purchase Required</span>
+                <span>✓ Expert Curation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust Points */}
       <section className="py-12 sm:py-16 bg-gray-50">
         <div className="container">
