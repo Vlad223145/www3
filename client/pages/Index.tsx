@@ -459,11 +459,19 @@ export default function Index() {
             </div>
 
             <div className="mt-8 sm:mt-10">
-              <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base text-gray-400">
+              <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base text-gray-400 mb-6">
                 <span>✓ 100% Authentic Fragrances</span>
                 <span>✓ Free Worldwide Shipping</span>
                 <span>✓ No Purchase Required</span>
                 <span>✓ Expert Curation</span>
+              </div>
+              <div className="text-center">
+                <Link
+                  to="/faq"
+                  className="inline-flex items-center px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors font-medium"
+                >
+                  View Complete FAQ
+                </Link>
               </div>
             </div>
           </div>
