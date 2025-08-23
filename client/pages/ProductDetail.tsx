@@ -162,7 +162,6 @@ const ProductDetail: React.FC = () => {
               <h2 className="text-2xl text-gray-600 mb-4">
                 {product.subtitle}
               </h2>
-              <p className="text-3xl font-bold text-black">${product.price}</p>
             </div>
 
             <div>
