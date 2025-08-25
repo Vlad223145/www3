@@ -266,14 +266,14 @@ const Checkout: React.FC = () => {
                     </div>
                     <div className="flex justify-end mt-1">
                       <div className="flex gap-1">
-                        <img src="/visa.png" alt="Visa" className="w-8 h-5" style={{ marginTop: "-32px" }} />
+                        <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe457fa9036bf4fd3a93307c16ee65110" alt="Visa" className="w-8 h-8" style={{ margin: "-82px -4px 0 -6px" }} />
                         <img
-                          src="/mastercard.png"
+                          src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fb06545ee54ef4728b9c82a7890201872"
                           alt="Mastercard"
                           className="w-8 h-5"
-                          style={{ marginTop: "-32px" }}
+                          style={{ margin: "-77px -5px 0 0" }}
                         />
-                        <img src="/amex.png" alt="Amex" className="w-8 h-5" style={{ marginTop: "-32px" }} />
+                        <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe5bf55e2a0254ef7ae67630f47ff626e" alt="Amex" className="w-8 h-5" style={{ margin: "-76px 9px 0 1px" }} />
                       </div>
                     </div>
                   </div>
@@ -320,7 +320,9 @@ const Checkout: React.FC = () => {
             {/* Footer */}
             <div className="text-center text-xs text-gray-400 space-x-4" style={{ marginTop: "13px" }}>
               <span style={{ marginTop: "-1px", padding: "23px 0 27px" }}>
-                <p>Powered by STRIPE</p>
+                <div style={{ marginTop: "-11px" }}>
+                  <p>Powered by Stripe</p>
+                </div>
               </span>
               <a href="#" className="hover:underline">
                 Legal
