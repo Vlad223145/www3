@@ -21,7 +21,7 @@ interface Product {
 }
 
 // Comprehensive product data with detailed descriptions
-const getProductById = (id: string) => {
+const getProductById = (id: string): Product | undefined => {
   const products = [
     {
       id: "1",
