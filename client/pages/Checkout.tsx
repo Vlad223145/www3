@@ -77,81 +77,68 @@ const Checkout: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Column - Order Summary */}
-          <div className="bg-white p-8 rounded-lg shadow-sm border">
-            {/* Currency Selection */}
-            <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">
-                Choose a currency:
-              </h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setCurrency("USD")}
-                  className={`px-4 py-2 border rounded-md text-sm font-medium ${
-                    currency === "USD"
-                      ? "bg-gray-100 border-gray-300"
-                      : "bg-white border-gray-200 hover:bg-gray-50"
-                  }`}
-                >
-                  🇺🇸 ${(total * 0.25).toFixed(2)}
-                </button>
-              </div>
-              <p className="text-xs text-gray-500 mt-2">1 USD = 3.7546 PLN</p>
+        <div className="max-w-4xl mx-auto">
+          {/* Sample Collection Summary */}
+          <div className="bg-white p-8 rounded-lg shadow-sm border mb-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Free Sample Collection</h2>
+              <p className="text-gray-600">Complete your address to receive all {sampleCount} premium fragrance samples</p>
             </div>
 
-            {/* Product */}
-            <div className="flex items-center gap-4 py-4 border-b">
-              <div className="w-12 h-12 bg-blue-100 rounded-md flex items-center justify-center">
-                <img
-                  src={sampleProduct.image}
-                  alt={sampleProduct.title}
-                  className="w-8 h-8 object-cover rounded"
-                />
-              </div>
-              <div className="flex-1">
-                <p className="font-medium text-gray-900">
-                  {sampleProduct.title}
-                </p>
-              </div>
-              <p className="font-medium">
-                {currencySymbol} {(sampleProduct.price * rate).toFixed(2)}
-              </p>
+            {/* Sample Items */}
+            <div className="space-y-3 mb-6">
+              {items.length > 0 ? (
+                items.map((item, index) => (
+                  <div key={index} className="flex items-center gap-4 py-2">
+                    <div className="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center">
+                      <Package className="w-5 h-5 text-gray-600" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-gray-900">{item.title}</p>
+                      <p className="text-sm text-gray-500">2ml Premium Sample</p>
+                    </div>
+                    <span className="text-green-600 font-medium">FREE</span>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Package className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">Complete 6-piece sample collection</p>
+                  <p className="text-sm text-gray-400">Estimated retail value: ${totalValue}</p>
+                </div>
+              )}
             </div>
 
-            {/* Pricing Breakdown */}
-            <div className="space-y-3 py-4 border-b">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Subtotal</span>
-                <span>
-                  {currencySymbol} {convertedSubtotal.toFixed(2)}
-                </span>
-              </div>
-              <div className="flex justify-between text-green-600">
-                <span className="flex items-center gap-1">
-                  <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs font-medium">
-                    SAVE10
-                  </span>
-                  10% off
-                </span>
-                <span>
-                  -{currencySymbol} {convertedSavings.toFixed(2)}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">VAT (19%)</span>
-                <span>
-                  {currencySymbol} {convertedVat.toFixed(2)}
-                </span>
-              </div>
+            {/* Benefits */}
+            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+              <h3 className="font-medium text-gray-900 mb-3">What's Included:</h3>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  6 premium niche fragrance samples (2ml each)
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Free worldwide shipping with tracking
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Elegant packaging with fragrance notes
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  No payment required, no hidden costs
+                </li>
+              </ul>
             </div>
 
             {/* Total */}
-            <div className="flex justify-between py-4">
-              <span className="text-lg font-semibold">Total due</span>
-              <span className="text-lg font-semibold">
-                {currencySymbol} {convertedTotal.toFixed(2)}
-              </span>
+            <div className="border-t pt-4">
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-900">Total Cost</span>
+                <span className="text-2xl font-bold text-green-600">FREE</span>
+              </div>
+              <p className="text-sm text-gray-500 mt-1">No payment required • Completely free</p>
             </div>
           </div>
 
