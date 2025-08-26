@@ -311,9 +311,37 @@ export default function Index() {
       {/* Premium Collection Showcase - 5 Large Windows */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container">
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16">
-            Premium Collection Showcase
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6">
+            Your Free Sample Collection
           </h2>
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            Get all 6 premium niche fragrance samples below - completely free with worldwide shipping
+          </p>
+
+          {/* Single Get All Samples Button */}
+          <div className="text-center mb-12">
+            <button
+              onClick={() => {
+                // Add all 6 samples to cart at once
+                showcaseItems.forEach(item => {
+                  addToCart({
+                    id: `sample-${item.id}`,
+                    title: `${item.title} Sample`,
+                    subtitle: item.subtitle,
+                    image: item.image,
+                    price: 0,
+                  });
+                });
+              }}
+              className="bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors font-medium text-lg flex items-center gap-3 mx-auto"
+            >
+              <Package className="w-5 h-5" />
+              Get All 6 Free Samples
+            </button>
+            <p className="text-sm text-gray-500 mt-2">
+              Complete sample collection - no payment required
+            </p>
+          </div>
 
           {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
@@ -321,7 +349,7 @@ export default function Index() {
               <div
                 key={item.id}
                 className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl cursor-pointer"
-                onClick={() => handleProductClick(item.id)}
+                style={{ cursor: 'default' }}
               >
                 <img
                   src={item.image}
@@ -374,15 +402,13 @@ export default function Index() {
                   />
                 )}
 
-                {/* Add to Cart Button - always visible at bottom */}
+                {/* Sample Info - always visible at bottom */}
                 <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <button
-                    onClick={(e) => handleAddToCart(e, item)}
-                    className="w-full bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2 border border-white/20"
-                  >
-                    <ShoppingBag className="w-4 h-4" />
-                    <span className="font-medium">Add to Cart</span>
-                  </button>
+                  <div className="bg-black/80 backdrop-blur text-white py-3 px-4 rounded-lg border border-white/20">
+                    <p className="text-center text-sm font-medium">
+                      Included in Free Sample Set
+                    </p>
+                  </div>
                 </div>
 
                 {/* Content - only show for BY KILIAN (item.id === 4) */}
