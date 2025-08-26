@@ -3,6 +3,23 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Package } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
+interface Product {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  price: number;
+  description: string;
+  notes: string[];
+  details: string;
+  forWhom: string;
+  occasion: string;
+  composition: string;
+  similarTo: string;
+  longevity: string;
+  character: string;
+}
+
 // Comprehensive product data with detailed descriptions
 const getProductById = (id: string) => {
   const products = [
