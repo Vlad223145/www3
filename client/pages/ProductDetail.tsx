@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Package } from "lucide-react";
-import { useCart } from "../context/CartContext";
+import { ArrowLeft } from "lucide-react";
 
 interface Product {
   id: string;
@@ -144,7 +143,6 @@ const getProductById = (id: string): Product | undefined => {
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { addToCart } = useCart();
 
   const product = id ? getProductById(id) : null;
 
@@ -161,15 +159,6 @@ const ProductDetail: React.FC = () => {
     );
   }
 
-  const handleAddToCart = () => {
-    addToCart({
-      id: `sample-${product.id}`,
-      title: `${product.title} Sample`,
-      subtitle: product.subtitle,
-      image: product.image,
-      price: 0,
-    });
-  };
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -289,23 +278,6 @@ const ProductDetail: React.FC = () => {
               </p>
             </div>
 
-            <div className="border-t border-gray-200 pt-6 space-y-4">
-              <button
-                onClick={handleAddToCart}
-                className="w-full bg-black text-white py-4 hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2"
-              >
-                <Package className="w-5 h-5" />
-                <span>Add Sample to Collection</span>
-              </button>
-
-              <div className="bg-gray-50 p-4 border border-gray-200">
-                <h4 className="font-medium mb-2 text-black">Sample Program</h4>
-                <p className="text-sm text-gray-600">
-                  Get a 2ml sample of this fragrance as part of our complimentary sample collection.
-                  No charges applied, worldwide shipping included.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
