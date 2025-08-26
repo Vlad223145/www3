@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, Package } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 // Comprehensive product data with detailed descriptions
@@ -146,16 +146,16 @@ const ProductDetail: React.FC = () => {
 
   const handleAddToCart = () => {
     addToCart({
-      id: product.id,
-      title: product.title,
+      id: `sample-${product.id}`,
+      title: `${product.title} Sample`,
       subtitle: product.subtitle,
       image: product.image,
-      price: product.price,
+      price: 0,
     });
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-black">
       {/* Navigation */}
       <nav className="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="container py-4">
@@ -176,7 +176,7 @@ const ProductDetail: React.FC = () => {
       </nav>
 
       {/* Product Detail */}
-      <div className="container py-12">
+      <div className="container py-12 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Image */}
           <div className="space-y-4">
@@ -190,7 +190,7 @@ const ProductDetail: React.FC = () => {
           </div>
 
           {/* Right Column - Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div>
               <h1 className="font-serif text-4xl font-bold text-black mb-2">
                 {product.title}
@@ -201,19 +201,19 @@ const ProductDetail: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Description</h3>
+              <h3 className="font-bold text-lg mb-3 text-black">Overview</h3>
               <p className="text-gray-700 leading-relaxed">
                 {product.description}
               </p>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Fragrance Notes</h3>
+              <h3 className="font-bold text-lg mb-3 text-black">Fragrance Notes</h3>
               <div className="flex flex-wrap gap-2">
                 {product.notes.map((note, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
+                    className="px-3 py-1 bg-gray-100 text-gray-800 text-sm border border-gray-200"
                   >
                     {note}
                   </span>
@@ -222,24 +222,70 @@ const ProductDetail: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-3">Details</h3>
+              <h3 className="font-bold text-lg mb-3 text-black">Composition Details</h3>
               <p className="text-gray-700 leading-relaxed">{product.details}</p>
             </div>
 
-            <div className="space-y-4 pt-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-bold text-lg mb-3 text-black">Who Is This For</h3>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {product.forWhom}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-lg mb-3 text-black">Best Occasions</h3>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {product.occasion}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-3 text-black">Ingredient Composition</h3>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                {product.composition}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-bold text-lg mb-3 text-black">Similar Fragrances</h3>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {product.similarTo}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-lg mb-3 text-black">Performance</h3>
+                <p className="text-gray-700 leading-relaxed text-sm">
+                  {product.longevity}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-3 text-black">Character</h3>
+              <p className="text-gray-700 leading-relaxed">
+                {product.character}
+              </p>
+            </div>
+
+            <div className="border-t border-gray-200 pt-6 space-y-4">
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-black text-white py-4 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2"
+                className="w-full bg-black text-white py-4 hover:bg-gray-800 transition-colors flex items-center justify-center space-x-2"
               >
-                <ShoppingBag className="w-5 h-5" />
-                <span>Add to Cart</span>
+                <Package className="w-5 h-5" />
+                <span>Add Sample to Collection</span>
               </button>
 
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-medium mb-2">Free Sample Available</h4>
+              <div className="bg-gray-50 p-4 border border-gray-200">
+                <h4 className="font-medium mb-2 text-black">Sample Program</h4>
                 <p className="text-sm text-gray-600">
-                  Try a 2ml sample before purchasing the full size bottle. Free
-                  worldwide shipping on all samples.
+                  Get a 2ml sample of this fragrance as part of our complimentary sample collection.
+                  No charges applied, worldwide shipping included.
                 </p>
               </div>
             </div>
