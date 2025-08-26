@@ -1,62 +1,65 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Package, MapPin } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const Checkout: React.FC = () => {
   const { items } = useCart();
-  const [currency, setCurrency] = useState("PLN");
-  const [selectedPayment, setSelectedPayment] = useState("card");
   const [formData, setFormData] = useState({
     email: "",
     fullName: "",
-    country: "Poland",
+    country: "United States",
     address: "",
-    cardNumber: "",
-    expiryDate: "",
-    cvc: "",
-    phoneNumber: "",
-    billingInfo: true,
-    savePayment: false,
+    city: "",
+    postalCode: "",
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Calculate totals
-  const subtotal = items.reduce(
-    (sum, item) => sum + (item.price || 250) * item.quantity,
-    0,
-  );
-  const savings = 12.02;
-  const vat = subtotal * 0.19; // 19% VAT
-  const total = subtotal - savings + vat;
-
-  // Convert to selected currency
-  const exchangeRates = { PLN: 1, USD: 0.25 };
-  const rate = exchangeRates[currency as keyof typeof exchangeRates] || 1;
-  const convertedTotal = total * rate;
-  const convertedSubtotal = subtotal * rate;
-  const convertedSavings = savings * rate;
-  const convertedVat = vat * rate;
-
-  const currencySymbol = currency === "PLN" ? "PLN" : "$";
+  // Sample collection details
+  const sampleCount = items.length > 0 ? items.length : 6;
+  const totalValue = sampleCount * 25; // Estimated retail value
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]:
-        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+      [name]: value,
     }));
   };
 
-  const sampleProduct = items[0] || {
-    image:
-      "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
-    title: "Pure Glow Cream",
-    subtitle: "Luxury Skincare",
-    price: 250,
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    // Here you would normally send the address to your backend
+    console.log('Sample request submitted:', formData);
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Package className="w-8 h-8 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Received!</h2>
+          <p className="text-gray-600 mb-4">
+            Your free sample collection will be shipped to {formData.fullName} within 3-7 business days.
+          </p>
+          <p className="text-sm text-gray-500">
+            No payment required. Completely free with tracking included.
+          </p>
+          <Link
+            to="/"
+            className="inline-block mt-6 bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Back to Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
