@@ -42,7 +42,7 @@ const CountdownTimer: React.FC = memo(() => {
 
   return (
     <div className="text-center pt-6">
-      <p className="text-white/80 text-lg mb-4">Limited Time Offer Ends In:</p>
+      <p className="text-white/80 text-lg mb-4">Free Sample Program Ends In:</p>
       <div className="flex justify-center gap-4">
         <div className="bg-white/10 backdrop-blur rounded-lg p-4 min-w-[80px]">
           <div className="text-3xl font-bold text-white">
