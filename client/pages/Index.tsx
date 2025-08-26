@@ -338,9 +338,25 @@ export default function Index() {
               <Package className="w-5 h-5" />
               Get All 6 Free Samples
             </button>
-            <p className="text-sm text-gray-500 mt-2">
-              Complete sample collection - no payment required
-            </p>
+            <div className="text-center mt-4">
+              <p className="text-sm text-gray-500 mb-2">
+                Complete sample collection - no payment required
+              </p>
+              <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  No Credit Card
+                </span>
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  No Hidden Fees
+                </span>
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Worldwide Shipping
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
