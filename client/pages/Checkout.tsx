@@ -142,189 +142,163 @@ const Checkout: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column - Checkout Form */}
-          <div className="space-y-6">
+          {/* Address Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Shipping Information */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
-              <h2 className="text-lg font-semibold mb-4">
-                Shipping information
-              </h2>
+              <div className="flex items-center gap-3 mb-4">
+                <MapPin className="w-5 h-5 text-gray-600" />
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Shipping Address
+                </h2>
+              </div>
+              <p className="text-gray-600 mb-6 text-sm">
+                Provide your address to receive your free sample collection. No payment required.
+              </p>
 
-              <div className="space-y-4">
-                <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
+                    Email Address
                   </label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="email@example.com"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="your@email.com"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   />
                 </div>
 
-                <div>
+                <div className="md:col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Shipping address
+                    Full Name
                   </label>
                   <input
                     type="text"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
-                    placeholder="Full name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
+                    placeholder="John Doe"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   />
+                </div>
 
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Country
+                  </label>
                   <select
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-3"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   >
-                    <option value="Poland">Poland</option>
-                    <option value="USA">USA</option>
+                    <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United Kingdom">United Kingdom</option>
                     <option value="Germany">Germany</option>
-                    <option value="UK">UK</option>
+                    <option value="France">France</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Other">Other</option>
                   </select>
+                </div>
 
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Street Address
+                  </label>
                   <input
                     type="text"
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    placeholder="Address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="123 Main Street, Apt 4B"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
                   />
-                  <p className="text-xs text-blue-600 mt-1 cursor-pointer hover:underline">
-                    Enter address manually
-                  </p>
                 </div>
-              </div>
-            </div>
 
-            {/* Payment Method */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border">
-              <h2 className="text-lg font-semibold mb-4">Payment method</h2>
-
-              <div className="space-y-4">
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="payment"
-                    value="card"
-                    checked={selectedPayment === "card"}
-                    onChange={() => setSelectedPayment("card")}
-                    className="w-4 h-4"
-                  />
-                  <span className="flex items-center gap-2"><p>Card</p></span>
-                </label>
-
-                {/* Card Information */}
-                <div className="ml-7 space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Card information
-                    </label>
-                    <input
-                      type="text"
-                      name="cardNumber"
-                      value={formData.cardNumber}
-                      onChange={handleInputChange}
-                      placeholder="1234 1234 1234 1234"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-t-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                    <div className="flex">
-                      <input
-                        type="text"
-                        name="expiryDate"
-                        value={formData.expiryDate}
-                        onChange={handleInputChange}
-                        placeholder="MM / YY"
-                        className="w-1/2 px-3 py-2 border border-gray-300 border-t-0 border-r-0 rounded-bl-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
-                      <input
-                        type="text"
-                        name="cvc"
-                        value={formData.cvc}
-                        onChange={handleInputChange}
-                        placeholder="CVC"
-                        className="w-1/2 px-3 py-2 border border-gray-300 border-t-0 rounded-br-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
-                    </div>
-                    <div className="flex justify-end mt-1">
-                      <div className="flex gap-1">
-                        <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe457fa9036bf4fd3a93307c16ee65110" alt="Visa" className="w-8 h-8" style={{ margin: "-82px -4px 0 -6px" }} />
-                        <img
-                          src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fb06545ee54ef4728b9c82a7890201872"
-                          alt="Mastercard"
-                          className="w-8 h-5"
-                          style={{ margin: "-77px -5px 0 0" }}
-                        />
-                        <img src="https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fe5bf55e2a0254ef7ae67630f47ff626e" alt="Amex" className="w-8 h-5" style={{ margin: "-76px 9px 0 1px" }} />
-                      </div>
-                    </div>
-                  </div>
-
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="savePayment"
-                      checked={formData.savePayment}
-                      onChange={handleInputChange}
-                      className="w-4 h-4"
-                    />
-                    <span className="text-sm">
-                      Save my payment information for future purchases
-                    </span>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    City
                   </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    placeholder="New York"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                  />
+                </div>
 
-                  <p className="text-xs text-gray-500">
-                    By providing my phone number, I agree to create a Link
-                    account and save my payment info to Link, according to the{" "}
-                    <a href="#" className="text-blue-600 hover:underline">
-                      Link Terms
-                    </a>{" "}
-                    and{" "}
-                    <a href="#" className="text-blue-600 hover:underline">
-                      Privacy Policy
-                    </a>
-                    .
-                  </p>
-
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Postal Code
+                  </label>
+                  <input
+                    type="text"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleInputChange}
+                    placeholder="10001"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Pay Button */}
-            <button className="w-full bg-blue-600 text-white py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors text-lg">
-              Pay
+            {/* Trust Signals */}
+            <div className="bg-gray-50 p-6 rounded-lg border">
+              <h3 className="font-medium text-gray-900 mb-4">What happens next?</h3>
+              <div className="space-y-3 text-sm text-gray-600">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                  </div>
+                  <span>We process your address (no payment required)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                  </div>
+                  <span>Your samples ship within 24 hours with tracking</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                  </div>
+                  <span>Receive your premium sample collection in 3-7 days</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-black text-white py-4 rounded-lg font-medium hover:bg-gray-800 transition-colors text-lg flex items-center justify-center gap-2"
+            >
+              <Package className="w-5 h-5" />
+              Request Free Samples
             </button>
 
-            <p className="text-center text-sm text-gray-500">
-              <p>Free returns and exchanges</p>
-            </p>
-
-            {/* Footer */}
-            <div className="text-center text-xs text-gray-400 space-x-4" style={{ marginTop: "13px" }}>
-              <span style={{ marginTop: "-1px", padding: "23px 0 27px" }}>
-                <div style={{ marginTop: "-11px" }}>
-                  <p>Powered by Stripe</p>
-                </div>
-              </span>
-              <a href="#" className="hover:underline">
-                Legal
-              </a>
-              <a href="#" className="hover:underline">
-                Returns
-              </a>
-              <a href="#" className="hover:underline">
-                Contact
-              </a>
+            <div className="text-center">
+              <p className="text-sm text-gray-500 mb-2">
+                Completely free with worldwide shipping included
+              </p>
+              <p className="text-xs text-gray-400">
+                No payment required • No hidden costs • Delivered in 3-7 days
+              </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
