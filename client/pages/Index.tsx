@@ -490,14 +490,27 @@ export default function Index() {
 
             <div className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-900 rounded-2xl">
               <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
-                The Niche Fragrance Difference
+                Why This Program is 100% Free
               </h3>
-              <p className="text-gray-300 leading-relaxed text-lg">
-                Unlike mass-market fragrances, niche perfumes use the finest raw materials and traditional crafting methods.
-                These are fragrances created by master perfumers without commercial constraints – pure artistic expression
-                in a bottle. Our sample program lets you discover these exceptional creations risk-free,
-                with free worldwide shipping and no purchase obligations.
+              <p className="text-gray-300 leading-relaxed text-lg mb-4">
+                We believe everyone deserves to experience luxury fragrances. This sample program is funded by
+                fragrance houses who want to introduce their artisanal creations to new audiences.
+                No catches, no hidden costs - just premium samples delivered free worldwide.
               </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-green-400 font-medium text-sm">Industry Funded</div>
+                  <div className="text-gray-400 text-xs">Brands sponsor this program</div>
+                </div>
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-blue-400 font-medium text-sm">Limited Time</div>
+                  <div className="text-gray-400 text-xs">Program availability varies</div>
+                </div>
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-purple-400 font-medium text-sm">No Obligations</div>
+                  <div className="text-gray-400 text-xs">Never any pressure to buy</div>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8 sm:mt-10">
