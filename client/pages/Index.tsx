@@ -488,7 +488,7 @@ export default function Index() {
               <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base text-gray-400 mb-6">
                 <span>✓ 100% Authentic Fragrances</span>
                 <span>✓ Free Worldwide Shipping</span>
-                <span>✓ No Purchase Required</span>
+                <span>✓ No Payment Required</span>
                 <span>✓ Expert Curation</span>
               </div>
               <div className="text-center">
@@ -556,12 +556,12 @@ export default function Index() {
                 <span className="text-xl sm:text-2xl font-bold">2</span>
               </div>
               <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
-                Secure Checkout
+                Simple Address Form
               </h3>
               <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                Link your payment card for security. No charges apply to samples
-                - you only pay if you decide to purchase full-size bottles.
-                Complete transparency with no hidden fees.
+                Just provide your shipping address. No payment information required.
+                Completely free with no obligations or future charges.
+                What you see is what you get - absolutely nothing to pay.
               </p>
             </div>
 
@@ -588,15 +588,30 @@ export default function Index() {
       {/* CTA Before Footer */}
       <section className="py-16 bg-black text-white">
         <div className="container text-center">
-          <h2 className="font-serif text-h2 font-bold mb-4">
-            Only 47 Samples Left
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
+            Limited Time Free Sample Program
           </h2>
           <p className="text-lg mb-8 opacity-90">
-            Order your free sample today and discover the world of niche
+            Get your complete free sample collection today and discover the world of niche
             fragrances
           </p>
-          <button className="btn bg-white text-black hover:bg-gray-100">
-            Order Sample Now
+          <button
+            onClick={() => {
+              // Add all 6 samples to cart at once
+              showcaseItems.forEach(item => {
+                addToCart({
+                  id: `sample-${item.id}`,
+                  title: `${item.title} Sample`,
+                  subtitle: item.subtitle,
+                  image: item.image,
+                  price: 0,
+                });
+              });
+            }}
+            className="bg-white text-black px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-medium text-lg inline-flex items-center gap-2"
+          >
+            <Package className="w-5 h-5" />
+            Get All Samples Free
           </button>
         </div>
       </section>
