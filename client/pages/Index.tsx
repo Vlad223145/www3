@@ -229,9 +229,9 @@ export default function Index() {
                     Discover rare scents. Free samples. Free shipping.
                   </p>
                   <p className="text-white/80 text-lg">
-                    Try 2ml fragrance samples with free worldwide delivery.
-                    Simply choose your gift set, link your card, and receive
-                    premium samples at no cost.
+                    Get all 6 premium fragrance samples (2ml each) with completely free worldwide delivery.
+                    No payment required. No hidden costs. Simply provide your address and receive
+                    our complete sample collection at absolutely no cost.
                   </p>
 
                   {/* Countdown Timer - isolated component */}
@@ -243,7 +243,7 @@ export default function Index() {
               <div className="w-full lg:w-1/2">
                 <div className="bg-white/95 backdrop-blur rounded-xl p-8 shadow-2xl">
                   <h3 className="font-serif text-2xl font-bold mb-8 text-black text-center">
-                    How To Get Free Samples
+                    How To Get Your Free Sample Collection
                   </h3>
 
                   <div className="space-y-6">
@@ -253,12 +253,12 @@ export default function Index() {
                       </div>
                       <div>
                         <h4 className="font-bold text-lg mb-2 text-black">
-                          Choose Gift Set
+                          Complete Sample Set
                         </h4>
                         <p className="text-gray-600">
-                          Select from our curated collection of 2ml premium
-                          fragrance samples. Each sample provides 30-40
-                          applications.
+                          Receive all 6 premium niche fragrance samples (2ml each).
+                          Each sample provides 30-40 applications to fully experience
+                          these exclusive scents.
                         </p>
                       </div>
                     </div>
@@ -269,12 +269,12 @@ export default function Index() {
                       </div>
                       <div>
                         <h4 className="font-bold text-lg mb-2 text-black">
-                          Link Your Card
+                          Provide Address
                         </h4>
                         <p className="text-gray-600">
-                          Secure your order with card details. No charge for
-                          samples - only pay if you decide to purchase full-size
-                          bottles.
+                          Simply provide your shipping address. No payment information
+                          required. This is completely free with no obligations or
+                          future charges.
                         </p>
                       </div>
                     </div>
@@ -298,7 +298,7 @@ export default function Index() {
 
                   <div className="mt-8 p-4 bg-black rounded-lg">
                     <p className="text-white text-center font-medium">
-                      100% Free Samples • No Hidden Costs • Premium Quality
+                      Completely Free • No Payment Required • No Hidden Costs • Premium Quality
                     </p>
                   </div>
                 </div>
