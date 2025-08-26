@@ -365,7 +365,7 @@ export default function Index() {
               <div
                 key={item.id}
                 className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl cursor-pointer"
-                style={{ cursor: 'default' }}
+                onClick={() => handleProductClick(item.id)}
               >
                 <img
                   src={item.image}
