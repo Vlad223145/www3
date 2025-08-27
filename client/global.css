@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -37,14 +37,16 @@
     --ring: var(--accent);
 
     /* Typography */
-    --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    --font-sans:
+      "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial;
     --font-serif: "Playfair Display", "Georgia", serif;
 
     /* Sizes */
-    --fs-h1: 2.75rem;   /* 44px */
-    --fs-h2: 1.75rem;   /* 28px */
-    --fs-h3: 1.125rem;  /* 18px */
-    --fs-body: 1rem;    /* 16px */
+    --fs-h1: 2.75rem; /* 44px */
+    --fs-h2: 1.75rem; /* 28px */
+    --fs-h3: 1.125rem; /* 18px */
+    --fs-body: 1rem; /* 16px */
     --fs-caption: 0.875rem; /* 14px */
 
     /* Spacing scale */
@@ -105,12 +107,78 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: auto !important;
+    overflow-x: hidden;
+    height: 100%;
+    scroll-padding-top: 0 !important;
+    scroll-snap-type: none !important;
+    scroll-restoration: manual;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: auto;
+    min-height: 100vh;
+    position: relative;
+    overscroll-behavior: none;
+    scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Prevent layout shifts */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Improve scroll performance */
+  .scroll-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable all smooth scrolling and jumping */
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+  }
+
+  /* Prevent layout shifts and jumps */
+  body,
+  html {
+    scroll-restoration: manual !important;
+  }
+
+  /* Disable scroll anchoring */
+  * {
+    overflow-anchor: none !important;
+  }
+
+  /* Prevent video from causing layout issues */
+  video {
+    will-change: auto;
+    transform: translateZ(0);
+  }
+
+  /* Optimize animations */
+  .group:hover img {
+    will-change: transform;
+  }
+
+  .group img {
+    will-change: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
   }
 }
@@ -222,14 +290,24 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
@@ -244,22 +322,33 @@
 }
 
 @keyframes confetti {
-  0% { transform: scale(0) rotate(0deg); opacity: 1; }
-  50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
-  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .btn-primary:hover {
   animation: pulse 800ms ease-in-out 1;
 }
 
-/* Enhanced hover effects */
+/* Enhanced hover effects - optimized */
 .product-card-hover {
   transition: transform var(--fast) var(--ease);
+  will-change: auto;
 }
 
 .product-card-hover:hover {
   transform: translateY(-3px);
+  will-change: transform;
 }
 
 .product-card-hover:hover .product-image {
@@ -267,7 +356,7 @@
 }
 
 .product-card-hover:hover .product-overlay {
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.12));
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12));
 }
 
 .product-cta-slide {
@@ -279,12 +368,6 @@
 .product-card-hover:hover .product-cta-slide {
   transform: translateY(0);
   opacity: 1;
-}
-
-/* Hero parallax */
-.hero-parallax {
-  will-change: transform;
-  transition: transform var(--fast) linear;
 }
 
 /* Success modal */
@@ -299,7 +382,9 @@
 /* Carousel transitions */
 .carousel-slide {
   transform: translateX(0);
-  transition: transform var(--med) var(--ease), opacity var(--med) var(--ease);
+  transition:
+    transform var(--med) var(--ease),
+    opacity var(--med) var(--ease);
 }
 
 .carousel-slide.next {
@@ -311,13 +396,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 
-  .hero-parallax {
-    transform: none !important;
+  html {
+    scroll-behavior: auto !important;
   }
 }

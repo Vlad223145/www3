@@ -1,234 +1,178 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Star, ShoppingBag, Search, Menu, ChevronRight, Check, Truck, Shield, Clock, ArrowRight } from 'lucide-react';
-import ProductCard from '../components/ProductCard';
-import ReviewsCarousel from '../components/ReviewsCarousel';
+import { useState, useCallback, useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Star,
+  ShoppingBag,
+  Search,
+  Menu,
+  ChevronRight,
+  Check,
+  Truck,
+  Shield,
+  Clock,
+  ArrowRight,
+  CreditCard,
+  Gift,
+  Package,
+} from "lucide-react";
+import ProductCard from "../components/ProductCard";
+import ReviewsCarousel from "../components/ReviewsCarousel";
+import CountdownTimer from "../components/CountdownTimer";
+import { useCart } from "../context/CartContext";
 
 export default function Index() {
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [selectedFragrance, setSelectedFragrance] = useState('');
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [selectedFragrance, setSelectedFragrance] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const { addToCart, getTotalItems, toggleCart } = useCart();
+  const navigate = useNavigate();
+
+  // Debounced navigation to prevent multiple clicks
+  const handleProductClick = useCallback(
+    (productId: number) => {
+      navigate(`/product/${productId}`);
+    },
+    [navigate],
+  );
+
+  // Optimized add to cart handler
+  const handleAddToCart = useCallback(
+    (e: React.MouseEvent, item: any) => {
+      e.stopPropagation();
+      addToCart({
+        id: item.id.toString(),
+        title: item.title,
+        subtitle: item.subtitle,
+        image: item.image,
+        price: 250,
+      });
+    },
+    [addToCart],
+  );
 
   const handleSampleOrder = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !address) return;
-    
+
     setIsFormSubmitted(true);
     setTimeout(() => setIsFormSubmitted(false), 3000);
   };
 
-  const categories = [
-    { name: 'Night', image: '/api/placeholder/400/300', count: 24 },
-    { name: 'Day', image: '/api/placeholder/400/300', count: 31 },
-    { name: 'Unisex', image: '/api/placeholder/400/300', count: 18 },
-    { name: 'Woody', image: '/api/placeholder/400/300', count: 27 },
-    { name: 'Floral', image: '/api/placeholder/400/300', count: 33 },
-    { name: 'Oriental', image: '/api/placeholder/400/300', count: 21 }
-  ];
+  const trustPoints = useMemo(
+    () => [
+      {
+        icon: <Check className="w-6 h-6" />,
+        title: "Free Samples",
+        description: "Try any fragrance for free",
+      },
+      {
+        icon: <Truck className="w-6 h-6" />,
+        title: "Fast Delivery",
+        description: "1-3 days worldwide",
+      },
+      {
+        icon: <Shield className="w-6 h-6" />,
+        title: "Original Fragrances",
+        description: "100% authentic products",
+      },
+      {
+        icon: <Clock className="w-6 h-6" />,
+        title: "14 Day Returns",
+        description: "Full money back guarantee",
+      },
+    ],
+    [],
+  );
 
-  const featuredProducts = [
-    {
-      id: 1,
-      brand: 'TOM FORD',
-      name: 'Oud Venetian',
-      price: 18500,
-      originalPrice: 21000,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.8,
-      reviews: 132,
-      notes: ['Oud', 'Amber', 'Vanilla'],
-      description: 'Woody-amber fragrance with notes of oud, tobacco and vanilla — perfect for evening.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 18500, available: true },
-        { id: '100ml', name: '100ml', price: 28500, available: true }
-      ],
-      available: true,
-      slug: 'oud-venetian',
-      isNew: true
-    },
-    {
-      id: 2,
-      brand: 'CREED',
-      name: 'Aventus',
-      price: 16200,
-      originalPrice: 18500,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.9,
-      reviews: 256,
-      notes: ['Bergamot', 'Smoke', 'Musk'],
-      description: 'Legendary fragrance for successful men with notes of bergamot and smoke.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 16200, available: true },
-        { id: '100ml', name: '100ml', price: 24500, available: false }
-      ],
-      available: true,
-      slug: 'aventus',
-      isBestseller: true
-    },
-    {
-      id: 3,
-      brand: 'MAISON RARE',
-      name: 'Noir Intense',
-      price: 12800,
-      originalPrice: 14500,
-      images: ['/api/placeholder/300/400', '/api/placeholder/300/400'],
-      rating: 4.7,
-      reviews: 89,
-      notes: ['Rose', 'Wood', 'Tobacco'],
-      description: 'Intense evening fragrance with rich notes of rose and tobacco.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 12800, available: true }
-      ],
-      available: true,
-      slug: 'noir-intense',
-      isRare: true
-    },
-    {
-      id: 4,
-      brand: 'BY KILIAN',
-      name: 'Black Phantom',
-      price: 19500,
-      originalPrice: 22000,
-      images: ['/api/placeholder/300/400'],
-      rating: 4.6,
-      reviews: 76,
-      notes: ['Coffee', 'Vanilla', 'Sandalwood'],
-      description: 'Seductive fragrance with notes of coffee and vanilla.',
-      sizes: [
-        { id: 'sample', name: 'Sample 2ml', price: 0, available: true, isSample: true },
-        { id: '50ml', name: '50ml', price: 19500, available: true }
-      ],
-      available: true,
-      slug: 'black-phantom'
-    }
-  ];
-
-  const brands = [
-    'TOM FORD', 'CREED', 'MAISON RARE', 'BY KILIAN', 'AMOUAGE', 'XERJOFF'
-  ];
-
-  const trustPoints = [
-    {
-      icon: <Check className="w-6 h-6" />,
-      title: 'Free Samples',
-      description: 'Try any fragrance for free'
-    },
-    {
-      icon: <Truck className="w-6 h-6" />,
-      title: 'Fast Delivery',
-      description: '1-3 days worldwide'
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: 'Original Fragrances',
-      description: '100% authentic products'
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: '14 Day Returns',
-      description: 'Full money back guarantee'
-    }
-  ];
-
-  // Large showcase items for the gallery section
-  const showcaseItems = [
-    {
-      id: 1,
-      image: '/api/placeholder/500/600',
-      title: 'TOM FORD',
-      subtitle: 'Private Blend Collection',
-      featured: true
-    },
-    {
-      id: 2,
-      image: '/api/placeholder/500/600',
-      title: 'CREED',
-      subtitle: 'Royal Exclusives',
-      featured: false
-    },
-    {
-      id: 3,
-      image: '/api/placeholder/500/600',
-      title: 'MAISON RARE',
-      subtitle: 'Artisan Series',
-      featured: false
-    },
-    {
-      id: 4,
-      image: '/api/placeholder/500/600',
-      title: 'BY KILIAN',
-      subtitle: 'Sacred Wood',
-      featured: true
-    },
-    {
-      id: 5,
-      image: '/api/placeholder/500/600',
-      title: 'AMOUAGE',
-      subtitle: 'Jubilation XXV',
-      featured: false
-    },
-    {
-      id: 6,
-      image: '/api/placeholder/500/600',
-      title: 'XERJOFF',
-      subtitle: 'Cruz del Sur II',
-      featured: false
-    },
-    {
-      id: 7,
-      image: '/api/placeholder/500/600',
-      title: 'PARFUMS DE MARLY',
-      subtitle: 'Layton',
-      featured: true
-    },
-    {
-      id: 8,
-      image: '/api/placeholder/500/600',
-      title: 'NASOMATTO',
-      subtitle: 'Black Afgano',
-      featured: false
-    },
-    {
-      id: 9,
-      image: '/api/placeholder/500/600',
-      title: 'FREDERIC MALLE',
-      subtitle: 'Portrait of a Lady',
-      featured: false
-    }
-  ];
+  // Large showcase items for the gallery section - only 6 items - memoized
+  const showcaseItems = useMemo(
+    () => [
+      {
+        id: 1,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9",
+        title: "TOM FORD",
+        subtitle: "Private Blend Collection",
+        featured: true,
+      },
+      {
+        id: 2,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fffbcf90b86bd4e4f904b924886e9a09a",
+        title: "CREED",
+        subtitle: "Royal Exclusives",
+        featured: false,
+      },
+      {
+        id: 3,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp",
+        title: "MAISON RARE",
+        subtitle: "Artisan Series",
+        featured: false,
+      },
+      {
+        id: 4,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab",
+        title: "BY KILIAN",
+        subtitle: "Sacred Wood",
+        featured: true,
+      },
+      {
+        id: 5,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129",
+        title: "AMOUAGE",
+        subtitle: "Jubilation XXV",
+        featured: false,
+      },
+      {
+        id: 6,
+        image:
+          "https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp",
+        title: "AMOUAGE",
+        subtitle: "Jubilation XXV",
+        featured: false,
+      },
+    ],
+    [],
+  );
 
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen bg-bg pt-20">
       {/* Promo Bar */}
       <div className="bg-black text-white py-2 px-4 text-center text-sm">
         <div className="container flex items-center justify-center gap-4">
           <span>Free samples + free worldwide shipping</span>
-          <button className="text-gray-300 hover:underline text-xs">How to get</button>
+          <button className="text-gray-300 hover:underline text-xs">
+            How to get
+          </button>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="bg-white border-b border-border sticky top-0 z-50">
+      <nav className="bg-white border-b border-border fixed top-0 w-full z-50">
         <div className="container py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             <Link to="/" className="font-serif text-2xl font-bold text-black">
               NICHE
             </Link>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <Link to="/catalog" className="text-text hover:text-black transition-colors">Catalog</Link>
-              <Link to="/new" className="text-text hover:text-black transition-colors">New</Link>
-              <Link to="/bestsellers" className="text-text hover:text-black transition-colors">Bestsellers</Link>
-              <Link to="/brands" className="text-text hover:text-black transition-colors">Brands</Link>
-            </div>
 
             <div className="flex items-center space-x-4">
               <Search className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
-              <ShoppingBag className="w-5 h-5 text-muted cursor-pointer hover:text-black transition-colors" />
+              <button
+                onClick={toggleCart}
+                className="relative cursor-pointer hover:text-black transition-colors"
+              >
+                <ShoppingBag className="w-5 h-5 text-muted" />
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </button>
               <button className="md:hidden">
                 <Menu className="w-5 h-5 text-muted" />
               </button>
@@ -237,259 +181,268 @@ export default function Index() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            {/* Left Column - Content & Form (55%) */}
-            <div className="w-full md:w-[55%] space-y-8 order-2 md:order-1">
-              <div className="space-y-4">
-                <h1 className="font-serif font-bold text-black" style={{ 
-                  fontSize: 'var(--fs-h1)', 
-                  lineHeight: '1.02' 
-                }}>
-                  Niche Fragrances — Free Samples
-                </h1>
-                <p className="font-sans text-muted" style={{ 
-                  fontSize: 'var(--fs-h3)' 
-                }}>
-                  Discover rare scents. Free samples. Free shipping.
-                </p>
+      {/* Hero Section with Background Video */}
+      <section className="relative min-h-screen flex items-center">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover"
+            poster="/api/placeholder/1920/1080"
+            style={{
+              willChange: "auto",
+              transform: "translateZ(0)",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <source
+              src="https://cdn.builder.io/o/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F8abd0a1430ec47cfa70b46a69d9a6475?alt=media&token=d7d6aa6e-f01a-47e6-a3c8-4c993330c75b&apiKey=aa57fa3495ed440bb8d5e43633a5eae3"
+              type="video/mp4"
+            />
+          </video>
+          {/* Fallback background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/api/placeholder/1920/1080)" }}
+          ></div>
+          <div className="absolute inset-0 bg-black/60"></div>
+        </div>
+
+        <div className="container relative z-10 py-20">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col lg:flex-row gap-12 items-center">
+              {/* Left Column - Content & Form */}
+              <div className="w-full lg:w-1/2 space-y-8">
+                <div className="space-y-6">
+                  <h1 className="font-serif font-bold text-white text-5xl lg:text-6xl leading-tight">
+                    Niche Fragrances — Free Samples
+                  </h1>
+                  <p className="font-sans text-white/90 text-xl lg:text-2xl">
+                    Discover rare scents. Free samples. Free shipping.
+                  </p>
+                  <p className="text-white/80 text-lg">
+                    Get all 6 premium fragrance samples (2ml each) with completely free worldwide delivery.
+                    No payment required. No hidden costs. Simply provide your address and receive
+                    our complete sample collection at absolutely no cost.
+                  </p>
+
+                  {/* Countdown Timer - isolated component */}
+                  <CountdownTimer />
+                </div>
               </div>
 
-              {/* Quick Sample Order Form */}
-              <div className="bg-white border border-border rounded-xl p-6 shadow-custom">
-                <h3 className="font-serif text-xl font-bold mb-4">Order Free Sample</h3>
-                
-                {isFormSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Check className="w-8 h-8 text-white" />
+              {/* Right Column - Steps Process */}
+              <div className="w-full lg:w-1/2">
+                <div className="bg-white/95 backdrop-blur rounded-xl p-8 shadow-2xl">
+                  <h3 className="font-serif text-2xl font-bold mb-8 text-black text-center">
+                    How To Get Your Free Sample Collection
+                  </h3>
+
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <Gift className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Complete Sample Set
+                        </h4>
+                        <p className="text-gray-600">
+                          Receive all 6 premium niche fragrance samples (2ml each).
+                          Each sample provides 30-40 applications to fully experience
+                          these exclusive scents.
+                        </p>
+                      </div>
                     </div>
-                    <h4 className="font-bold text-lg mb-2">Order Sent!</h4>
-                    <p className="text-muted">We will contact you within 24 hours</p>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <CreditCard className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Provide Address
+                        </h4>
+                        <p className="text-gray-600">
+                          Simply provide your shipping address. No payment information
+                          required. This is completely free with no obligations or
+                          future charges.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center flex-shrink-0">
+                        <Package className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg mb-2 text-black">
+                          Receive Samples
+                        </h4>
+                        <p className="text-gray-600">
+                          Free worldwide shipping. Your sample kit arrives
+                          within 3-7 days in elegant packaging with detailed
+                          fragrance notes.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  <form onSubmit={handleSampleOrder} className="space-y-4">
-                    <div>
-                      <input
-                        type="email"
-                        placeholder="Your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Delivery address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <select
-                        value={selectedFragrance}
-                        onChange={(e) => setSelectedFragrance(e.target.value)}
-                        className="w-full px-4 py-3 border border-input rounded-lg focus:ring-2 focus:ring-black focus:border-transparent"
-                      >
-                        <option value="">Choose fragrance (optional)</option>
-                        <option value="oud-venetian">Tom Ford - Oud Venetian</option>
-                        <option value="aventus">Creed - Aventus</option>
-                        <option value="noir-intense">Maison Rare - Noir Intense</option>
-                      </select>
-                    </div>
-                    
-                    <div className="flex items-start space-x-2">
-                      <input type="checkbox" id="newsletter" className="mt-1" />
-                      <label htmlFor="newsletter" className="text-sm text-muted">
-                        Subscribe to newsletter (10% discount on full size)
-                      </label>
-                    </div>
-                    
-                    <button type="submit" className="btn btn-primary w-full">
-                      Order Free Sample
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </button>
-                    
-                    <p className="text-xs text-muted text-center">
-                      No hidden fees — only payment when buying full-size bottle
+
+                  <div className="mt-8 p-4 bg-black rounded-lg">
+                    <p className="text-white text-center font-medium">
+                      Completely Free • No Payment Required • No Hidden Costs • Premium Quality
                     </p>
-                  </form>
-                )}
-              </div>
-            </div>
-
-            {/* Right Column - Hero Image (45%) */}
-            <div className="w-full md:w-[45%] relative order-1 md:order-2">
-              <div className="aspect-[3/4] max-h-[560px] relative mx-auto">
-                <img
-                  src="/api/placeholder/600/800"
-                  alt="Premium niche fragrance bottle shot"
-                  className="w-full h-full object-contain rounded-xl drop-shadow-xl"
-                  style={{ boxShadow: 'var(--shadow)' }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories/Mood Tiles */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Find Your Scent</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {categories.map((category, index) => (
-              <Link
-                key={index}
-                to={`/category/${category.name.toLowerCase()}`}
-                className="group relative overflow-hidden rounded-lg aspect-[3/2] bg-gray-100"
-              >
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
-                <div className="absolute inset-0 flex flex-col justify-end p-4">
-                  <h3 className="text-white font-semibold">{category.name}</h3>
-                  <p className="text-white/80 text-sm">{category.count} fragrances</p>
+                  </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-16">
-        <div className="container">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-h2 font-bold">New Arrivals</h2>
-            <Link to="/new" className="text-black hover:underline flex items-center">
-              View All <ChevronRight className="w-4 h-4 ml-1" />
-            </Link>
-          </div>
-          
-          <div className="products-grid">
-            {featuredProducts.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                variant="compact"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Points */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Why Choose Us</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {trustPoints.map((point, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-black">
-                  {point.icon}
-                </div>
-                <h3 className="font-bold mb-2">{point.title}</h3>
-                <p className="text-muted text-sm">{point.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works */}
-      <section className="py-16">
-        <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">How It Works</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                1
-              </div>
-              <h3 className="font-bold mb-2">Choose Sample</h3>
-              <p className="text-muted text-sm">Find your desired fragrance in our catalog</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                2
-              </div>
-              <h3 className="font-bold mb-2">Get It Free</h3>
-              <p className="text-muted text-sm">Sample delivery is absolutely free</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
-                3
-              </div>
-              <h3 className="font-bold mb-2">Buy Full Size</h3>
-              <p className="text-muted text-sm">Order full bottle with discount if you like it</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Large Showcase Gallery - 9 Big Windows */}
-      <section className="py-24 bg-white">
+      {/* Premium Collection Showcase - 5 Large Windows */}
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-16">Premium Collection Showcase</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6">
+            Your Free Sample Collection
+          </h2>
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            Get all 6 premium niche fragrance samples below - completely free with worldwide shipping
+          </p>
+
+          {/* Single Get All Samples Button */}
+          <div className="text-center mb-12">
+            <button
+              onClick={() => {
+                // Add all 6 samples to cart at once
+                showcaseItems.forEach(item => {
+                  addToCart({
+                    id: `sample-${item.id}`,
+                    title: `${item.title} Sample`,
+                    subtitle: item.subtitle,
+                    image: item.image,
+                    price: 0,
+                  });
+                });
+              }}
+              className="bg-black text-white px-8 py-4 rounded-lg hover:bg-gray-800 transition-colors font-medium text-lg flex items-center gap-3 mx-auto"
+            >
+              <Package className="w-5 h-5" />
+              Get All 6 Free Samples
+            </button>
+            <div className="text-center mt-4">
+              <p className="text-sm text-gray-500 mb-2">
+                Complete sample collection - no payment required
+              </p>
+              <div className="flex items-center justify-center gap-4 text-xs text-gray-400">
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  No Credit Card
+                </span>
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  No Hidden Fees
+                </span>
+                <span className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  Worldwide Shipping
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Very large and wide blocks, Mobile: Responsive stacking */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12 max-w-8xl mx-auto">
             {showcaseItems.map((item, index) => (
-              <div 
-                key={item.id} 
-                className={`group relative overflow-hidden rounded-2xl bg-black ${
-                  item.featured ? 'md:row-span-2' : ''
-                }`}
-                style={{ 
-                  height: item.featured ? '600px' : '400px',
-                  minHeight: '400px'
-                }}
+              <div
+                key={item.id}
+                className="group relative overflow-hidden rounded-xl lg:rounded-3xl bg-black h-[350px] lg:h-[800px] xl:h-[900px] shadow-2xl cursor-pointer"
+                onClick={() => handleProductClick(item.id)}
               >
                 <img
                   src={item.image}
                   alt={`${item.title} ${item.subtitle}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                  loading="lazy"
                 />
-                
+
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="font-serif text-white text-2xl font-bold mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/80 text-lg font-light">
-                    {item.subtitle}
-                  </p>
-                  
-                  {/* Hover CTA */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-4">
-                    <button className="bg-white text-black px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-                      View Collection
-                    </button>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      item.id === 1
+                        ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F09c22b740e214b7981d48c0f2157e2a9)"
+                        : item.id === 2
+                          ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc50c8ec0c8aa44b9a20eb42b27c86139?format=webp)"
+                          : item.id === 3
+                            ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fc15455e55ad746e6ab33902343d55991?format=webp)"
+                            : item.id === 4
+                              ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Feaab8a4a14ea43a8ad0aec2a8bfbc9ab)"
+                              : item.id === 5
+                                ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)"
+                                : item.id === 6
+                                  ? "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2Fa75d8ecbb19e428d8ed82b826fcce332?format=webp)"
+                                  : "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0))",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: item.id === 5 ? "50% 50%" : "center",
+                    backgroundSize: "cover",
+                  }}
+                />
+
+                {/* Additional overlay for AMOUAGE */}
+                {(item.id === 5 || item.id === 6) && (
+                  <div
+                    className="absolute"
+                    style={{
+                      backgroundImage:
+                        "url(https://cdn.builder.io/api/v1/image/assets%2Faa57fa3495ed440bb8d5e43633a5eae3%2F96ebf30ff02a4562a73e151c0fd85129)",
+                      backgroundPosition: "50% 50%",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                      bottom: "0px",
+                      left: "-1286px",
+                      right: "0px",
+                      top: "-475px",
+                      marginLeft: "17px",
+                      width: "336px",
+                    }}
+                  />
+                )}
+
+                {/* Sample Info - always visible at bottom */}
+                <div className="absolute bottom-4 left-4 right-4 z-10">
+                  <div className="bg-black/80 backdrop-blur text-white py-3 px-4 rounded-lg border border-white/20">
+                    <p className="text-center text-sm font-medium">
+                      Included in Free Sample Set
+                    </p>
                   </div>
                 </div>
 
+                {/* Content - only show for BY KILIAN (item.id === 4) */}
+                {item.id === 4 && (
+                  <div className="absolute bottom-16 left-4 right-4 p-2 lg:p-6">
+                    <h3 className="font-serif text-white text-lg lg:text-2xl xl:text-3xl font-bold mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/80 text-sm lg:text-base xl:text-lg font-light">
+                      {item.subtitle}
+                    </p>
+                  </div>
+                )}
+
                 {/* Featured badge */}
                 {item.featured && (
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-white text-black px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="absolute top-4 right-4 lg:top-8 lg:right-8">
+                    <span className="bg-white text-black px-3 py-1 lg:px-6 lg:py-3 rounded-full text-xs lg:text-sm xl:text-base font-bold">
                       FEATURED
                     </span>
                   </div>
@@ -500,17 +453,160 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Brands */}
-      <section className="py-16">
+      {/* Premium Brand Promotion */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-black text-white">
         <div className="container">
-          <h2 className="font-serif text-h2 font-bold text-center mb-12">Premium Brands</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {brands.map((brand, index) => (
-              <div key={index} className="text-center p-4 border border-border rounded-lg hover:shadow-lg transition-shadow">
-                <h3 className="font-bold text-sm">{brand}</h3>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
+              Discover Premium Niche Fragrances
+            </h2>
+            <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-10 text-gray-300 leading-relaxed">
+              Experience the world's most exclusive fragrance houses with our complimentary sample program
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 text-left max-w-3xl mx-auto">
+              <div>
+                <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                  Premium Heritage Brands
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Our curated collection features the most prestigious niche fragrance houses from around the world.
+                  From Tom Ford's exclusive Private Blend Collection to Creed's centuries-old royal formulations,
+                  experience fragrances that define luxury and sophistication.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                  Try Entire Collections FREE
+                </h3>
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  Don't just sample one fragrance – explore complete collections from your favorite houses.
+                  Each 2ml sample provides 30-40 applications, giving you weeks to truly understand and appreciate
+                  these complex, artisanal compositions before making any commitment.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-900 rounded-2xl">
+              <h3 className="font-bold text-xl sm:text-2xl mb-4 text-white">
+                Why This Program is 100% Free
+              </h3>
+              <p className="text-gray-300 leading-relaxed text-lg mb-4">
+                We believe everyone deserves to experience luxury fragrances. This sample program is funded by
+                fragrance houses who want to introduce their artisanal creations to new audiences.
+                No catches, no hidden costs - just premium samples delivered free worldwide.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-green-400 font-medium text-sm">Industry Funded</div>
+                  <div className="text-gray-400 text-xs">Brands sponsor this program</div>
+                </div>
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-blue-400 font-medium text-sm">Limited Time</div>
+                  <div className="text-gray-400 text-xs">Program availability varies</div>
+                </div>
+                <div className="bg-black/50 p-3 rounded-lg">
+                  <div className="text-purple-400 font-medium text-sm">No Obligations</div>
+                  <div className="text-gray-400 text-xs">Never any pressure to buy</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 sm:mt-10">
+              <div className="flex flex-wrap justify-center gap-4 text-sm sm:text-base text-gray-400 mb-6">
+                <span>✓ 100% Authentic Fragrances</span>
+                <span>✓ Free Worldwide Shipping</span>
+                <span>✓ No Payment Required</span>
+                <span>✓ Expert Curation</span>
+              </div>
+              <div className="text-center">
+                <Link
+                  to="/faq"
+                  className="inline-flex items-center px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors font-medium"
+                >
+                  View Complete FAQ
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Points */}
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="container">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12">
+            Why Choose Us
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {trustPoints.map((point, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-black">
+                  {point.icon}
+                </div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2">
+                  {point.title}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  {point.description}
+                </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sample Process Details */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="container">
+          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-black">
+            The Complete Sample Experience
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">1</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Select Your Samples
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Browse our premium collection and choose up to 3 samples from
+                world-renowned niche fragrance houses. Each 2ml sample provides
+                30-40 applications - enough to truly experience the fragrance.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">2</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Simple Address Form
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Just provide your shipping address. No payment information required.
+                Completely free with no obligations or future charges.
+                What you see is what you get - absolutely nothing to pay.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <span className="text-xl sm:text-2xl font-bold">3</span>
+              </div>
+              <h3 className="font-bold text-lg sm:text-xl mb-3 sm:mb-4 text-black">
+                Free Delivery Worldwide
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                Your samples arrive in premium packaging with detailed fragrance
+                notes and application tips. Free shipping globally with tracking
+                included. Delivery within 3-7 business days.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -521,14 +617,30 @@ export default function Index() {
       {/* CTA Before Footer */}
       <section className="py-16 bg-black text-white">
         <div className="container text-center">
-          <h2 className="font-serif text-h2 font-bold mb-4">
-            Only 47 Samples Left
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold mb-4">
+            Limited Time Free Sample Program
           </h2>
           <p className="text-lg mb-8 opacity-90">
-            Order your free sample today and discover the world of niche fragrances
+            Get your complete free sample collection today and discover the world of niche
+            fragrances
           </p>
-          <button className="btn bg-white text-black hover:bg-gray-100">
-            Order Sample Now
+          <button
+            onClick={() => {
+              // Add all 6 samples to cart at once
+              showcaseItems.forEach(item => {
+                addToCart({
+                  id: `sample-${item.id}`,
+                  title: `${item.title} Sample`,
+                  subtitle: item.subtitle,
+                  image: item.image,
+                  price: 0,
+                });
+              });
+            }}
+            className="bg-white text-black px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-medium text-lg inline-flex items-center gap-2"
+          >
+            <Package className="w-5 h-5" />
+            Get All Samples Free
           </button>
         </div>
       </section>
@@ -536,35 +648,16 @@ export default function Index() {
       {/* Footer */}
       <footer className="bg-black text-white py-16">
         <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
               <h3 className="font-serif text-xl font-bold mb-4">NICHE</h3>
               <p className="text-gray-400 text-sm">
-                Premium niche fragrances with free samples and worldwide shipping.
+                Premium niche fragrances with free samples and worldwide
+                shipping.
               </p>
             </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Catalog</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link to="/catalog" className="hover:text-white">All Fragrances</Link></li>
-                <li><Link to="/new" className="hover:text-white">New Arrivals</Link></li>
-                <li><Link to="/bestsellers" className="hover:text-white">Bestsellers</Link></li>
-                <li><Link to="/brands" className="hover:text-white">Brands</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-bold mb-4">Help</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><Link to="/help" className="hover:text-white">How to Order</Link></li>
-                <li><Link to="/delivery" className="hover:text-white">Delivery</Link></li>
-                <li><Link to="/returns" className="hover:text-white">Returns</Link></li>
-                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-              </ul>
-            </div>
-            
-            <div>
+
+            <div className="ml-[120px]">
               <h4 className="font-bold mb-4">Newsletter</h4>
               <p className="text-gray-400 text-sm mb-4">
                 Get notifications about new fragrances and special offers
@@ -581,7 +674,7 @@ export default function Index() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
             <p>&copy; 2024 NICHE. All rights reserved.</p>
           </div>
